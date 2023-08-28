@@ -1,1 +1,46 @@
-{'data': [{'id': 'cllvb288tr37ks60c15kxuwc0', 'factionSymbol': 'COSMIC', 'type': 'PROCUREMENT', 'terms': {'deadline': '2023-09-04T20:01:46.280Z', 'payment': {'onAccepted': 261954, 'onFulfilled': 1416492}, 'deliver': [{'tradeSymbol': 'ALUMINUM_ORE', 'destinationSymbol': 'X1-QB20-40572B', 'unitsRequired': 12600, 'unitsFulfilled': 0}]}, 'accepted': False, 'fulfilled': False, 'expiration': '2023-08-29T20:01:46.280Z', 'deadlineToAccept': '2023-08-29T20:01:46.280Z'}], 'meta': {'total': 1, 'page': 1, 'limit': 10}}
+{
+  "data": {
+    "systemSymbol": "X1-QB20",
+    "symbol": "X1-QB20-61050B",
+    "type": "PLANET",
+    "x": -9,
+    "y": -20,
+    "orbitals": [
+      { "symbol": "X1-QB20-40572B" },
+      { "symbol": "X1-QB20-88193B" },
+      { "symbol": "X1-QB20-92514D" }
+    ],
+    "traits": [
+      {
+        "symbol": "OVERCROWDED",
+        "name": "Overcrowded",
+        "description": "A waypoint teeming with inhabitants, leading to cramped living conditions and a high demand for resources."
+      },
+      {
+        "symbol": "HIGH_TECH",
+        "name": "High-Tech",
+        "description": "A center of innovation and cutting-edge technology, driving progress and attracting skilled individuals from around the galaxy."
+      },
+      {
+        "symbol": "BUREAUCRATIC",
+        "name": "Bureaucratic",
+        "description": "A waypoint governed by complex regulations, red tape, and layers of administration, often leading to inefficiencies and frustration."
+      },
+      {
+        "symbol": "TEMPERATE",
+        "name": "Temperate",
+        "description": "A world with a mild climate and balanced ecosystem, providing a comfortable environment for a variety of life forms and supporting diverse industries."
+      },
+      {
+        "symbol": "MARKETPLACE",
+        "name": "Marketplace",
+        "description": "A thriving center of commerce where traders from across the galaxy gather to buy, sell, and exchange goods."
+      }
+    ],
+    "chart": {
+      "submittedBy": "COSMIC",
+      "submittedOn": "2023-08-26T14:03:29.266Z"
+    },
+    "faction": { "symbol": "COSMIC" }
+  }
+}
