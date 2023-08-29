@@ -8,6 +8,17 @@ class ContractManager:
 
     def __init__(self, header) -> None:
         self.header = header
+        
+        self.contract_state = { # TODO: Accepted: 📝, Not accepted: 🟡, Fulfilled: ✅
+            "accepted": {
+                True: "✅",
+                False: "📝"
+            },
+            "notAccepted": {
+                True: "✅",
+                False: "🟡"
+            }
+        }
 
     def get_contracts(self):
         url = "https://api.spacetraders.io/v2/my/contracts"
@@ -24,6 +35,26 @@ class ContractManager:
         )
         result = requests.post(url, headers=self.header).json()
         print(result)
+    
+    def view_contracts(self):
+        contracts = self.get_contracts()
+
+        for contract in contracts:
+            state_key = "accepted" if contract.accepted else "notAccepted"
+            sign = self.contract_state[state_key][contract.fulfilled]
+            print("====================================\n"+ sign + contract.id)
+            for delivery in contract.terms.deliver:
+                print(
+                    "Deliver "
+                    + str(delivery.unitsRequired)
+                    + " "
+                    + str(delivery.tradeSymbol)
+                    + " to "
+                    + delivery.destinationSymbol
+                    + " by "
+                    + contract.terms.deadline
+                )
+            print("====================================")
 
 
 class Payment:

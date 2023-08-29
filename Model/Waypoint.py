@@ -1,11 +1,15 @@
 import requests
 import json
+import re
 from types import SimpleNamespace
 
 class WaypointManager:
     
     header = ""
-    
+
+    def __init__(self, header) -> None:
+        self.header = header
+
     def get_waypoint_info(self, systemSymbol, waypointSymbol=""):
         url = (
             "https://api.spacetraders.io/v2/systems/"
@@ -17,9 +21,27 @@ class WaypointManager:
         result = json.dumps(result["data"])
         waypoint = json.loads(result, object_hook=lambda d: SimpleNamespace(**d))
         print(waypoint.orbitals[0].symbol)
+        
+    def view_waypoint_info(self, ui):
+        print("Ender Waypoint Symbol (q to return): ")
+        waypointSymbol = input()
+
+        if waypointSymbol == "q":
+            ui.print_ui()
+
+        # check if input is valid        
+        regex = re.compile(r"^[a-zA-Z0-9]+-[a-zA-Z0-9]+-[a-zA-Z0-9]+$")
+        if not regex.match(waypointSymbol):
+            print("Invalid Waypoint Symbol")
+            self.view_waypoint_info(ui)
+        
+        # get system symbol from waypoint symbol
+        regex = re.compile(r"^([a-zA-Z0-9]+)-[a-zA-Z0-9]+")
+        system_symbol = regex.match(waypointSymbol).group(1)
+        
+        self.get_waypoint_info(system_symbol, waypointSymbol)
     
-    def __init__(self, header) -> None:
-        self.header = header
+
 
 
 class Trait:
