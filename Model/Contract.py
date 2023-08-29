@@ -22,7 +22,7 @@ class ContractManager:
             + str(contract_id)
             + "/accept"
         )
-        result = requests.put(url, headers=self.header).json()
+        result = requests.post(url, headers=self.header).json()
         print(result)
 
 

@@ -1,8 +1,8 @@
 import requests
 import json
 
-from Contract import *
-from Model.Waypoint import Waypoint
+from Model.Contract import *
+from Model.Waypoint import WaypointManager
 
 
 class SpaceTraders:
@@ -28,27 +28,23 @@ class SpaceTraders:
         result = requests.get(url, headers=self.header).json()
         print(result)
 
-    def get_waypoint_info(self, systemSymbol, waypointSymbol = ""):
-        url = (
-            "https://api.spacetraders.io/v2/systems/"
-            + systemSymbol
-            + "/waypoints/"
-            + waypointSymbol
-        )
-        result = requests.get(url, headers=self.header).json()
-        result = json.dumps(result["data"])
-        waypoint = json.loads(result, object_hook=lambda d: SimpleNamespace(**d))
-        print(waypoint.orbitals[0].symbol)
+
 
 
 if __name__ == "__main__":
     space_trader = SpaceTraders()
     space_trader.set_header()
     space_trader.get_agent_details()
-    space_trader.get_waypoint_info("X1-QB20", "X1-QB20-61050B")
     header = space_trader.get_header()
 
     contractMngr = ContractManager(header)
     contracts: Contract = contractMngr.get_contracts()
+    print(contracts)
 
     contractMngr.accept_contract(contracts[0].id)
+    
+    
+    waypointMngr = WaypointManager(header)
+    waypointMngr.get_waypoint_info("X1-QB20", "X1-QB20-61050B")
+    waypointMngr.get_waypoint_info("X1-QB20")
+    
