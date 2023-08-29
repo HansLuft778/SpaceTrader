@@ -2,10 +2,31 @@ import tkinter as tk
 
 from Model.Contract import ContractManager
 from Model.Waypoint import WaypointManager
+from start import SpaceTraders
+
 
 class UserInterface:
-    def __init__(self) -> None:
-        pass
+    contractMngr: ContractManager = None
+    waypointMngr: WaypointManager = None
+
+    def __init__(
+        self, contragtMngr: ContractManager, waypointMngr: WaypointManager
+    ) -> None:
+        self.contractMngr = contragtMngr
+        self.waypointMngr = waypointMngr
+
+        self.menu_options = {
+            "1": (self.view_contracts, []),
+            "2": (contractMngr.accept_contract),
+            "3": waypointMngr.get_waypoint_info,
+            "4": waypointMngr.get_waypoint_info,
+        }
+        
+        # TODO: Accepted: 📝, Not accepted: 🟡, Failed: ❌, Fulfilled: ✅
+        self.accepted_state = {
+            True: "📝",
+            False: "🟡"
+        }
 
     def print_ui(self):
         print("Press the following keys to navigate the UI:")
@@ -14,23 +35,42 @@ class UserInterface:
         print("\t3: waypoint info for current Waypoint: X1-QB20-61050B")
         print("\t4: waypoint info for current System: X1-QB20")
 
+    def view_contracts(self):
+        contracts = self.contractMngr.get_contracts()
 
-    def get_ui_event():
+        for contract in contracts:
+            sign = self.accepted_state[contract.accepted]
+            print("====================================\n"+ sign + contract.id)
+            for delivery in contract.terms.deliver:
+                print(
+                    "Deliver "
+                    + str(delivery.unitsRequired)
+                    + " "
+                    + str(delivery.tradeSymbol)
+                    + " to "
+                    + delivery.destinationSymbol
+                    + " by "
+                    + contract.terms.deadline
+                )
+            print("====================================")
+
+    def get_ui_event(self):
         value = input("Enter a value: ")
-        
-        match value:
-            case "1":
-                print("View contracts")
-            case "2":
-                print("Accept contracts")
-            case "3":
-                print("waypoint info for current Waypoint: X1-QB20-61050B")
-            case "4":
-                print("waypoint info for current System: X1-QB20")
-            case _:
-                print("Invalid input")
+
+        action, args = self.menu_options.get(value, [])
+        if action:
+            action(*args)
+        else:
+            print("Invalid input")
+
 
 if __name__ == "__main__":
-    ui = UserInterface()
+    sp = SpaceTraders()
+    header = sp.set_header()
+    contractMngr = ContractManager(header)
+    waypointMngr = WaypointManager(header)
+
+    ui = UserInterface(contractMngr, waypointMngr)
     ui.print_ui()
+    ui.get_ui_event()
     pass

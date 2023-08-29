@@ -11,8 +11,8 @@ class ContractManager:
 
     def get_contracts(self):
         url = "https://api.spacetraders.io/v2/my/contracts"
-        result = requests.get(url, headers=self.header).json()  # Get the response text
-        result = json.dumps(result["data"])  # Convert the response text to a string
+        result = requests.get(url, headers=self.header).json()
+        result = json.dumps(result["data"])
         contract = json.loads(result, object_hook=lambda d: SimpleNamespace(**d))
         return contract
 
