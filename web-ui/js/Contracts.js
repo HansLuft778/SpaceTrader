@@ -43,8 +43,8 @@ async function acceptContract(contractID, button) {
 }
 
 function updateButtonStatus(button) {
-    button.innerHTML = "Accepted";
-    button.className = "btn btn-success";
+    button.innerHTML = "Accepted"; // hähä der yoy stinkt nach gagge 
+    button.className = "btn btn-success"; // und versteht nüscht ausher trainstation
 }
 
 function displayContracts(rawData) {
