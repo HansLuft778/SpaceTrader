@@ -1,4 +1,4 @@
-import { Card } from "./ContractCard.js";
+import { Card } from "./Classes/ContractCard.js";
 
 async function getContracts() {
     const options = {

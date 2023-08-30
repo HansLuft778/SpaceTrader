@@ -1,8 +1,6 @@
-import { setIsKeySet } from "./APIkeyManager.js";
+import { ListCard } from "./Classes/ListCard.js";
 
-async function getAgentData() {
-
-    console.log("getAgentData");
+export async function getAgentData() {
 
     const options = {
         headers: {
@@ -10,18 +8,12 @@ async function getAgentData() {
             'Authorization': 'Bearer ' + sessionStorage.getItem("api_key")
         },
     };
-
     const result = await fetch('https://api.spacetraders.io/v2/my/agent', options)
         .then(response => response.json());
 
     console.log(result);
 
     if (result.error) {
-        if (result.error.code == 4100) {
-            console.log("error 4100");
-            setIsKeySet(false);
-            return;
-        } 
         Swal.fire({
             title: 'Error!',
             text: result.error.message,
@@ -31,10 +23,13 @@ async function getAgentData() {
         return;
     }
 
-    setIsKeySet(true);
-
     const agentDataDiv = document.getElementById("AgentDataDiv");
-    agentDataDiv.innerHTML = result.data.accountId;
-}
+    const agent = result.data;
 
-getAgentData();
+    const agentCard = new ListCard(true);
+    agentCard.renderCard(agentDataDiv);
+    agentCard.appendListElement("Username: " + agent.symbol);
+    agentCard.appendListElement("Credits: " + agent.credits);
+    agentCard.appendListElement("Headquarters: " + agent.headquarters);
+    agentCard.appendListElement("Faction: " + agent.startingFaction);
+}
