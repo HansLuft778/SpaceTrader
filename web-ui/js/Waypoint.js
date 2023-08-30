@@ -1,5 +1,6 @@
 import { SystemAccordion } from "./Classes/SystemAccordion.js";
 import { ListCard } from "./Classes/ListCard.js";
+import { Modal } from "./Classes/Modal.js";
 
 
 const swInfoInput = document.getElementById('SWInfoInput');
@@ -114,10 +115,29 @@ function displaySystemInfo(response) {
             listGroup.className = "list-group list-group-flush";
 
             traits.forEach(trait => {
+
                 const listElement = document.createElement("li");
-                listElement.className = "list-group-item";
+                listElement.className = "list-group-item d-flex align-items-center justify-content-center";
                 listElement.innerHTML = trait.name;
+
+                if (trait.name == "Shipyard") {
+                    // Build the button to visit a shipyard
+                    const modalLaunchButton = document.createElement("button");
+                    modalLaunchButton.type = "button";
+                    modalLaunchButton.innerHTML = "Visit";
+                    modalLaunchButton.className = "btn btn-primary";
+                    modalLaunchButton.setAttribute("style", "--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem; margin-left: 10px");
+                    modalLaunchButton.setAttribute("data-bs-toggle", "modal");
+                    modalLaunchButton.setAttribute("data-bs-target", "#shipyardModal");
+
+                    const modal = new Modal("shipyardModal", "Shipyard", "shipyardModalLabel");
+                    modal.renderMondalAndAppendTo(document.getElementById("modalsDiv"));
+
+                    listElement.appendChild(modalLaunchButton);
+                }
+
                 listGroup.appendChild(listElement);
+
             });
 
             listCard.appendListElement(listGroup);
