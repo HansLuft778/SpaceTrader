@@ -10,7 +10,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
         crossorigin="anonymous"></script>
-    <script src="js/util.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="js/APIkeyManager.js" defer type="module"></script>
+    <script src="js/index.js" defer type="module"></script>
 </head>
 
 <body>
@@ -48,7 +50,10 @@
                 </div>
             </div>
             <div class="col-lg-6">
-                Column
+                <h3>Agent Data</h3>
+                <div id="AgentDataDiv">
+                    <!-- Dynamic rendered Agent Data is here -->
+                </div>
             </div>
             <div class="col-lg">
                 Column

@@ -1,13 +1,10 @@
 
 
 async function getContracts() {
-
-    const APIkey = sessionStorage.getItem('api_key');
-
     const options = {
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + APIkey,
+            'Authorization': 'Bearer ' + sessionStorage.getItem('api_key'),
         },
     };
 
@@ -37,7 +34,7 @@ async function acceptContract(contractID, button) {
             title: 'Error!',
             text: result.error.message,
             icon: 'error',
-            confirmButtonText: 'Shit'
+            confirmButtonText: 'ok'
         })
         return;
     }
