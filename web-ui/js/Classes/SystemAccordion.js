@@ -14,7 +14,7 @@ export class SystemAccordion {
         parentDiv.appendChild(this.#accordionDiv);
     }
 
-    appendAccordionItem(waypoint) {
+    appendAccordionItem(id) {
         const accordionItem = document.createElement("div");
         accordionItem.className = "accordion-item";
 
@@ -22,22 +22,22 @@ export class SystemAccordion {
         accordionHeader.className = "accordion-header";
 
         const accordionButton = document.createElement("button");
-        accordionButton.id = "accordionButton" + waypoint.symbol;
+        accordionButton.id = "accordionButton" + id;
         accordionButton.className = "accordion-button";
         accordionButton.type = "button";
         accordionButton.setAttribute("data-bs-toggle", "collapse");
-        accordionButton.setAttribute("data-bs-target", "#collapse" + waypoint.symbol);
+        accordionButton.setAttribute("data-bs-target", "#collapse" + id);
         accordionButton.setAttribute("aria-expanded", "true");
-        accordionButton.setAttribute("aria-controls", "collapse" + waypoint.symbol);
-        accordionButton.innerHTML = "🪐" + waypoint.symbol; // THIS NEEDS TO HAVE MARGIN LEFT + emote
+        accordionButton.setAttribute("aria-controls", "collapse" + id);
+        accordionButton.innerHTML = "🪐" + id; // THIS NEEDS TO HAVE MARGIN LEFT + emote
 
         accordionHeader.appendChild(accordionButton);
         accordionItem.appendChild(accordionHeader);
 
         const accordionCollapse = document.createElement("div");
-        accordionCollapse.id = "collapse" + waypoint.symbol;
+        accordionCollapse.id = "collapse" + id;
         accordionCollapse.className = "accordion-collapse collapse";
-        accordionCollapse.setAttribute("aria-labelledby", "heading" + waypoint.symbol);
+        accordionCollapse.setAttribute("aria-labelledby", "heading" + id);
         accordionCollapse.setAttribute("data-bs-parent", "#systemAccordion");
 
         const accordionBody = document.createElement("div");

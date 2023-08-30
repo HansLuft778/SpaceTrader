@@ -74,13 +74,12 @@ function displaySystemInfo(response) {
 
     systemAccordion.renderAccordionAndAppendTo(systemInfoDiv);
 
-
     let orbitals = [];
     systemWaypointList.forEach(waypoint => {
         // append another Item to the accordion and get its body to fill with a ListCard
-        const accordionItem = systemAccordion.appendAccordionItem(waypoint);
+        const accordionItem = systemAccordion.appendAccordionItem(waypoint.symbol);
 
-        // if waypoint in orbitals, print to log
+        // if current waypoint is an orbital, change the accordion button to show a satellite and apply margin
         if (orbitals.includes(waypoint.symbol)) {
             const accordionButton = document.getElementById("accordionButton" + waypoint.symbol);
 
@@ -102,12 +101,13 @@ function displaySystemInfo(response) {
         }
 
         const listCard = new ListCard(false);
-
         const accordionBody = accordionItem.getElementsByClassName("accordion-body")[0];
         listCard.renderCardAndAppendTo(accordionBody);
+        // append waypoint type
         listCard.appendListText("Type: " + waypoint.type);
-        const traits = waypoint.traits;
 
+        // append traits to list
+        const traits = waypoint.traits;
         if (traits.length > 0) {
             listCard.appendListText("Traits:");
 
@@ -115,7 +115,6 @@ function displaySystemInfo(response) {
             listGroup.className = "list-group list-group-flush";
 
             traits.forEach(trait => {
-
                 const listElement = document.createElement("li");
                 listElement.className = "list-group-item d-flex align-items-center justify-content-center";
                 listElement.innerHTML = trait.name;
@@ -135,14 +134,11 @@ function displaySystemInfo(response) {
 
                     listElement.appendChild(modalLaunchButton);
                 }
-
                 listGroup.appendChild(listElement);
-
             });
-
             listCard.appendListElement(listGroup);
         }
-
+        // append location to list
         listCard.appendListText("Location: " + waypoint.x + ", " + waypoint.y);
     });
 }
