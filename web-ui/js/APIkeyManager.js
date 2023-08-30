@@ -1,5 +1,8 @@
 var isKeySet = false;
 
+const setAPIkeyButton = document.getElementById("setAPIkeyButton");
+setAPIkeyButton.addEventListener("click", setAPIkey);
+
 function setAPIkey() {
     const apiKeyInput = document.getElementById("apiKeyInput");
     const key = apiKeyInput.value;
