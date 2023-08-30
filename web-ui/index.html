@@ -38,6 +38,7 @@
     <div class="container text-center">
         <div class="row">
             <div class="col-lg">
+                <h3 style="margin-top: 8px;">Account</h3>
                 <p id="APIkeySet">API key not set ❌</p>
                 <div class="input-group input-group-sm mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-sm">API Key</span>
@@ -48,9 +49,22 @@
                     </button>
                 </div>
                 <p>Or create an account:</p>
+
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="registerCallSign">Call sign</span>
+                    <input type="text" class="form-control" placeholder="Username" aria-label="Username"
+                        aria-describedby="registerCallSign">
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="registerFaction">Faction</span>
+                    <input type="text" class="form-control" placeholder="Username" aria-label="Username"
+                        aria-describedby="registerFaction">
+                </div>
+
+
             </div>
             <div class="col-lg-6">
-                <h3>Agent Data</h3>
+                <h3 style="margin-top: 8px;">Agent Data</h3>
                 <div id="AgentDataDiv" class="d-flex justify-content-center">
                     <!-- Dynamic rendered Agent Data is here -->
                 </div>

@@ -28,7 +28,7 @@ export async function getAgentData() {
 
     const agentCard = new ListCard(true);
     agentCard.renderCardAndAppendTo(agentDataDiv);
-    agentCard.appendListText("Username: " + agent.symbol);
+    agentCard.appendListText("Call sign: " + agent.symbol);
     agentCard.appendListText("Credits: " + agent.credits);
     agentCard.appendListText("Headquarters: " + agent.headquarters);
     agentCard.appendListText("Faction: " + agent.startingFaction);
