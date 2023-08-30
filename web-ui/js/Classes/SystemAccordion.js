@@ -1,4 +1,3 @@
-import { ListCard } from "./ListCard.js";
 
 export class SystemAccordion {
 
@@ -7,7 +6,7 @@ export class SystemAccordion {
     constructor() {
     }
 
-    renderAccordion(parentDiv) {
+    renderAccordionAndAppendTo(parentDiv) {
         this.#accordionDiv = document.createElement("div");
         this.#accordionDiv.className = "accordion";
         this.#accordionDiv.id = "systemAccordion";
@@ -15,7 +14,7 @@ export class SystemAccordion {
         parentDiv.appendChild(this.#accordionDiv);
     }
 
-    appendAccordionItem(system) {
+    appendAccordionItem(waypoint) {
         const accordionItem = document.createElement("div");
         accordionItem.className = "accordion-item";
 
@@ -23,40 +22,32 @@ export class SystemAccordion {
         accordionHeader.className = "accordion-header";
 
         const accordionButton = document.createElement("button");
+        accordionButton.id = "accordionButton" + waypoint.symbol;
         accordionButton.className = "accordion-button";
         accordionButton.type = "button";
         accordionButton.setAttribute("data-bs-toggle", "collapse");
-        accordionButton.setAttribute("data-bs-target", "#collapse" + system.symbol);
+        accordionButton.setAttribute("data-bs-target", "#collapse" + waypoint.symbol);
         accordionButton.setAttribute("aria-expanded", "true");
-        accordionButton.setAttribute("aria-controls", "collapse" + system.symbol);
-        accordionButton.innerHTML = system.symbol;
+        accordionButton.setAttribute("aria-controls", "collapse" + waypoint.symbol);
+        accordionButton.innerHTML = "🪐" + waypoint.symbol; // THIS NEEDS TO HAVE MARGIN LEFT + emote
 
         accordionHeader.appendChild(accordionButton);
         accordionItem.appendChild(accordionHeader);
 
         const accordionCollapse = document.createElement("div");
-        accordionCollapse.id = "collapse" + system.symbol;
+        accordionCollapse.id = "collapse" + waypoint.symbol;
         accordionCollapse.className = "accordion-collapse collapse";
-        accordionCollapse.setAttribute("aria-labelledby", "heading" + system.symbol);
+        accordionCollapse.setAttribute("aria-labelledby", "heading" + waypoint.symbol);
         accordionCollapse.setAttribute("data-bs-parent", "#systemAccordion");
 
         const accordionBody = document.createElement("div");
         accordionBody.className = "accordion-body";
 
-        const listCard = new ListCard(false);
-        listCard.renderCard(accordionBody);
-        listCard.appendListElement("Type: " + system.type);
-        const traits = system.traits;
-
-        traits.forEach(trait => {
-            
-        });
-
-        listCard.appendListElement("Traits: " + system.location);
-
         accordionCollapse.appendChild(accordionBody);
         accordionItem.appendChild(accordionCollapse);
         this.#accordionDiv.appendChild(accordionItem);
+
+        return accordionItem;
     }
 }
 
@@ -66,7 +57,16 @@ export class SystemAccordion {
   <div class="accordion-item">
     <h2 class="accordion-header">
       <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-        Accordion Item #1
+        <Card>
+            <h5 class="card-title">Card title</h5>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">An item</li>
+                <li class="list-group-item">A second item</li>
+                <li class="list-group-item">A third item</li>
+                <li class="list-group-item">A fourth item</li>
+                <li class="list-group-item">And a fifth one</li>
+            </ul>
+        </Card>
       </button>
     </h2>
     <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
@@ -76,3 +76,5 @@ export class SystemAccordion {
   </div>
 </div>
  */
+
+

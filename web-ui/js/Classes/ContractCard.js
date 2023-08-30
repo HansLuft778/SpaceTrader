@@ -3,7 +3,7 @@ export class Card {
         this.contract = contract;
     }
 
-    renderCard(parentDiv) {
+    renderCardAndAppendTo(parentDiv) {
         const cardDiv = document.createElement("div");
         cardDiv.className = "card";
         cardDiv.setAttribute("style", "width: 18rem; margin-top: 10px;")

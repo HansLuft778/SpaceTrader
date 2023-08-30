@@ -55,7 +55,7 @@ function displayContracts(rawData) {
 
     rawData.data.forEach(contract => {
         const card = new Card(contract);
-        const cardDiv = card.renderCard(contractsDiv);
+        const cardDiv = card.renderCardAndAppendTo(contractsDiv);
 
         const acceptButton = cardDiv.getElementsByTagName("button")[0];
         acceptButton.onclick = function () {

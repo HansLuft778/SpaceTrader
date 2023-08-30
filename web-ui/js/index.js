@@ -27,9 +27,9 @@ export async function getAgentData() {
     const agent = result.data;
 
     const agentCard = new ListCard(true);
-    agentCard.renderCard(agentDataDiv);
-    agentCard.appendListElement("Username: " + agent.symbol);
-    agentCard.appendListElement("Credits: " + agent.credits);
-    agentCard.appendListElement("Headquarters: " + agent.headquarters);
-    agentCard.appendListElement("Faction: " + agent.startingFaction);
+    agentCard.renderCardAndAppendTo(agentDataDiv);
+    agentCard.appendListText("Username: " + agent.symbol);
+    agentCard.appendListText("Credits: " + agent.credits);
+    agentCard.appendListText("Headquarters: " + agent.headquarters);
+    agentCard.appendListText("Faction: " + agent.startingFaction);
 }

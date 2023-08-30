@@ -1,4 +1,6 @@
 import { SystemAccordion } from "./Classes/SystemAccordion.js";
+import { ListCard } from "./Classes/ListCard.js";
+
 
 const swInfoInput = document.getElementById('SWInfoInput');
 
@@ -69,14 +71,63 @@ function displaySystemInfo(response) {
         systemInfoDiv.removeChild(systemInfoDiv.firstChild);
     }
 
-    systemAccordion.renderAccordion(systemInfoDiv);
+    systemAccordion.renderAccordionAndAppendTo(systemInfoDiv);
 
+
+    let orbitals = [];
     systemWaypointList.forEach(waypoint => {
-        systemAccordion.appendAccordionItem(waypoint);
+        // append another Item to the accordion and get its body to fill with a ListCard
+        const accordionItem = systemAccordion.appendAccordionItem(waypoint);
+
+        // if waypoint in orbitals, print to log
+        if (orbitals.includes(waypoint.symbol)) {
+            const accordionButton = document.getElementById("accordionButton" + waypoint.symbol);
+
+            accordionButton.innerHTML = ""
+            const symbolSpan = document.createElement("span");
+            symbolSpan.innerHTML = "🛰️" + waypoint.symbol;
+            symbolSpan.setAttribute("style", "margin-left: 20px;");
+            accordionButton.appendChild(symbolSpan);
+        }
+
+        // find orbitals
+        if (waypoint.orbitals.length > 0) {
+            console.log("orbitals found");
+            waypoint.orbitals.forEach(orbital => {
+                orbitals.push(orbital.symbol);
+            });
+
+            console.log(orbitals);
+        }
+
+        const listCard = new ListCard(false);
+
+        const accordionBody = accordionItem.getElementsByClassName("accordion-body")[0];
+        listCard.renderCardAndAppendTo(accordionBody);
+        listCard.appendListText("Type: " + waypoint.type);
+        const traits = waypoint.traits;
+
+        if (traits.length > 0) {
+            listCard.appendListText("Traits:");
+
+            const listGroup = document.createElement("ul");
+            listGroup.className = "list-group list-group-flush";
+
+            traits.forEach(trait => {
+                const listElement = document.createElement("li");
+                listElement.className = "list-group-item";
+                listElement.innerHTML = trait.name;
+                listGroup.appendChild(listElement);
+            });
+
+            listCard.appendListElement(listGroup);
+        }
+
+        listCard.appendListText("Location: " + waypoint.x + ", " + waypoint.y);
     });
 }
 
 function displayWaypointInfo(response) {
     console.log("displayWaypointInfo");
-    
+
 }

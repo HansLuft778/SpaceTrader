@@ -7,14 +7,14 @@ export class ListCard {
         this.footer = footer;
     }
 
-    renderCard(parentDiv) {
+    renderCardAndAppendTo(parentDiv) {
         const cardDiv = document.createElement("div");
         cardDiv.className = "card";
         cardDiv.setAttribute("style", "margin-top: 10px;")
 
         this.#listGroup = document.createElement("ul");
         this.#listGroup.className = "list-group list-group-flush"
-        
+
         cardDiv.appendChild(this.#listGroup);
 
         if (this.footer) {
@@ -28,15 +28,22 @@ export class ListCard {
             cardFooter.appendChild(cardFooterText);
             cardDiv.appendChild(cardFooter);
         }
-        
+
         parentDiv.appendChild(cardDiv);
         return cardDiv;
     }
 
-    appendListElement(text) {
+    appendListText(text) {
         const listElement = document.createElement("li");
         listElement.className = "list-group-item";
         listElement.innerHTML = text;
+        this.#listGroup.appendChild(listElement);
+    }
+
+    appendListElement(element) {
+        const listElement = document.createElement("li");
+        listElement.className = "list-group-item";
+        listElement.appendChild(element);
         this.#listGroup.appendChild(listElement);
     }
 }
