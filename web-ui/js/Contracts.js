@@ -31,7 +31,7 @@ async function acceptContract(contractID, button) {
 
     if (result.error) {
         Swal.fire({
-            title: 'Error!', // henne stinkt
+            title: 'Error!', // hen.. äähhh ich meine yoy stinkt
             text: result.error.message,
             icon: 'error',
             confirmButtonText: 'ok'
