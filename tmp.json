@@ -1,46 +1,137 @@
 {
-  "data": {
-    "systemSymbol": "X1-QB20",
-    "symbol": "X1-QB20-61050B",
-    "type": "PLANET",
-    "x": -9,
-    "y": -20,
-    "orbitals": [
-      { "symbol": "X1-QB20-40572B" },
-      { "symbol": "X1-QB20-88193B" },
-      { "symbol": "X1-QB20-92514D" }
-    ],
-    "traits": [
-      {
-        "symbol": "OVERCROWDED",
-        "name": "Overcrowded",
-        "description": "A waypoint teeming with inhabitants, leading to cramped living conditions and a high demand for resources."
-      },
-      {
-        "symbol": "HIGH_TECH",
-        "name": "High-Tech",
-        "description": "A center of innovation and cutting-edge technology, driving progress and attracting skilled individuals from around the galaxy."
-      },
-      {
-        "symbol": "BUREAUCRATIC",
-        "name": "Bureaucratic",
-        "description": "A waypoint governed by complex regulations, red tape, and layers of administration, often leading to inefficiencies and frustration."
-      },
-      {
-        "symbol": "TEMPERATE",
-        "name": "Temperate",
-        "description": "A world with a mild climate and balanced ecosystem, providing a comfortable environment for a variety of life forms and supporting diverse industries."
-      },
-      {
-        "symbol": "MARKETPLACE",
-        "name": "Marketplace",
-        "description": "A thriving center of commerce where traders from across the galaxy gather to buy, sell, and exchange goods."
+  "data": [
+    {
+      "systemSymbol": "X1-DF55",
+      "symbol": "X1-DF55-00780Z",
+      "type": "PLANET",
+      "x": 2,
+      "y": -25,
+      "orbitals": [
+        {
+          "symbol": "X1-DF55-78311A"
+        }
+      ],
+      "traits": [
+        {
+          "symbol": "TEMPERATE",
+          "name": "Temperate",
+          "description": "A world with a mild climate and balanced ecosystem, providing a comfortable environment for a variety of life forms and supporting diverse industries."
+        }
+      ],
+      "chart": {
+        "waypointSymbol": "X1-DF55-00780Z",
+        "submittedBy": "ZCHART-X1-DF55-1",
+        "submittedOn": "2023-08-28T02:13:04.339Z"
       }
-    ],
-    "chart": {
-      "submittedBy": "COSMIC",
-      "submittedOn": "2023-08-26T14:03:29.266Z"
     },
-    "faction": { "symbol": "COSMIC" }
+    {
+      "systemSymbol": "X1-DF55",
+      "symbol": "X1-DF55-78311A",
+      "type": "MOON",
+      "x": 2,
+      "y": -25,
+      "orbitals": [],
+      "traits": [
+        {
+          "symbol": "VOLCANIC",
+          "name": "Volcanic",
+          "description": "A volatile world marked by intense volcanic activity, creating a hazardous environment with the potential for valuable resource extraction, such as rare metals and geothermal energy."
+        }
+      ],
+      "chart": {
+        "waypointSymbol": "X1-DF55-78311A",
+        "submittedBy": "ZCHART-X1-DF55-1",
+        "submittedOn": "2023-08-28T02:15:11.270Z"
+      }
+    },
+    {
+      "systemSymbol": "X1-DF55",
+      "symbol": "X1-DF55-39662Z",
+      "type": "GAS_GIANT",
+      "x": -44,
+      "y": 16,
+      "orbitals": [],
+      "traits": [],
+      "chart": {
+        "waypointSymbol": "X1-DF55-39662Z",
+        "submittedBy": "ZCHART-X1-DF55-1",
+        "submittedOn": "2023-08-28T02:41:14.207Z"
+      }
+    },
+    {
+      "systemSymbol": "X1-DF55",
+      "symbol": "X1-DF55-11333C",
+      "type": "ASTEROID_FIELD",
+      "x": 53,
+      "y": -19,
+      "orbitals": [
+        {
+          "symbol": "X1-DF55-05004A"
+        }
+      ],
+      "traits": [
+        {
+          "symbol": "COMMON_METAL_DEPOSITS",
+          "name": "Common Metal Deposits",
+          "description": "A waypoint rich in common metal ores like iron, copper, and aluminum, essential for construction and manufacturing."
+        },
+        {
+          "symbol": "STRIPPED",
+          "name": "Stripped",
+          "description": "A waypoint that has been heavily exploited for its resources, leaving a scarred and depleted landscape with diminished opportunities for future development."
+        },
+        {
+          "symbol": "EXPLOSIVE_GASES",
+          "name": "Explosive Gases",
+          "description": "A volatile environment filled with highly reactive gases, posing a constant risk to those who venture too close and offering opportunities for harvesting valuable materials such as hydrocarbons."
+        }
+      ],
+      "chart": {
+        "waypointSymbol": "X1-DF55-11333C",
+        "submittedBy": "ZCHART-X1-DF55-1",
+        "submittedOn": "2023-08-28T03:20:59.000Z"
+      },
+      "faction": {
+        "symbol": "COSMIC"
+      }
+    },
+    {
+      "systemSymbol": "X1-DF55",
+      "symbol": "X1-DF55-05004A",
+      "type": "ORBITAL_STATION",
+      "x": 53,
+      "y": -19,
+      "orbitals": [],
+      "traits": [
+        {
+          "symbol": "SURVEILLANCE_OUTPOST",
+          "name": "Surveillance Outpost",
+          "description": "A covert installation tasked with monitoring and collecting intelligence on nearby regions and potential threats."
+        },
+        {
+          "symbol": "INDUSTRIAL",
+          "name": "Industrial",
+          "description": "A waypoint dominated by factories, refineries, and other heavy industries, often accompanied by pollution and a bustling workforce."
+        },
+        {
+          "symbol": "MARKETPLACE",
+          "name": "Marketplace",
+          "description": "A thriving center of commerce where traders from across the galaxy gather to buy, sell, and exchange goods."
+        }
+      ],
+      "chart": {
+        "waypointSymbol": "X1-DF55-05004A",
+        "submittedBy": "ZCHART-X1-DF55-1",
+        "submittedOn": "2023-08-28T04:19:27.474Z"
+      },
+      "faction": {
+        "symbol": "COSMIC"
+      }
+    }
+  ],
+  "meta": {
+    "total": 5,
+    "page": 1,
+    "limit": 10
   }
 }
