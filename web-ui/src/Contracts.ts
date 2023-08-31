@@ -1,5 +1,6 @@
-import { Card } from "./Classes/ContractCard.js";
-import * as t from "./types/types.js"
+import { Card } from "./Classes/ContractCard";
+import * as t from "./types/types"
+import Swal from 'sweetalert2';
 
 async function getContracts() {
     const options = {
@@ -31,12 +32,12 @@ async function acceptContract(contractID: string, button: HTMLButtonElement) {
     console.log(result);
 
     if (result.error) {
-        // Swal.fire({
-        //     title: 'Error!',
-        //     text: result.error.message,
-        //     icon: 'error',
-        //     confirmButtonText: 'ok'
-        // })
+        Swal.fire({
+            title: 'Error!',
+            text: result.error.message,
+            icon: 'error',
+            confirmButtonText: 'ok'
+        })
         return;
     }
 

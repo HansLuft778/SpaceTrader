@@ -1,8 +1,10 @@
-import { SystemAccordion } from "./Classes/SystemAccordion.js";
-import { ListCard } from "./Classes/ListCard.js";
-import { Modal } from "./Classes/Modal.js";
+import { SystemAccordion } from "./Classes/SystemAccordion";
+import { ListCard } from "./Classes/ListCard";
+import { Modal } from "./Classes/Modal";
 
 import * as t from "./types/types";
+
+import Swal from 'sweetalert2';
 
 
 const swInfoInput = document.getElementById('SWInfoInput') as HTMLInputElement;
@@ -15,12 +17,12 @@ swInfoInput.addEventListener('keypress', function (e) {
 
         const regex = /^[a-zA-Z0-9]+-[a-zA-Z0-9]+(-[a-zA-Z0-9]+)?$/;
         if (!regex.test(value)) {
-            // Swal.fire({
-            //     title: 'Error!',
-            //     text: "Invalid System or Waypoint Symbol",
-            //     icon: 'error',
-            //     confirmButtonText: 'ok'
-            // })
+            Swal.fire({
+                title: 'Error!',
+                text: "Invalid System or Waypoint Symbol",
+                icon: 'error',
+                confirmButtonText: 'ok'
+            })
             return;
         }
 
@@ -45,12 +47,12 @@ async function getSystemInfo(systemSymbol: string) {
     console.log(result);
 
     if (result.error) {
-        // Swal.fire({
-        //     title: 'Error!',
-        //     text: result.error.message,
-        //     icon: 'error',
-        //     confirmButtonText: 'ok'
-        // })
+        Swal.fire({
+            title: 'Error!',
+            text: result.error.message,
+            icon: 'error',
+            confirmButtonText: 'ok'
+        })
         return;
     } else {
         displaySystemInfo(result);

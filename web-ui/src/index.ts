@@ -1,5 +1,9 @@
-import { ListCard } from "./Classes/ListCard.js";
+import { ListCard } from "./Classes/ListCard";
 import * as t from "./types/types";
+
+import { initAPI } from "./APIkeyManager";
+
+import Swal from 'sweetalert2';
 
 export async function getAgentData() {
 
@@ -9,18 +13,18 @@ export async function getAgentData() {
             'Authorization': 'Bearer ' + sessionStorage.getItem("api_key")
         },
     };
-    const result: t.ApiResponse<t.Account>  = await fetch('https://api.spacetraders.io/v2/my/agent', options)
+    const result: t.ApiResponse<t.Account> = await fetch('https://api.spacetraders.io/v2/my/agent', options)
         .then(response => response.json());
 
     console.log(result);
 
     if (result.error) {
-        // Swal.fire({
-        //     title: 'Error!',
-        //     text: result.error.message,
-        //     icon: 'error',
-        //     confirmButtonText: 'ok'
-        // })
+        Swal.fire({
+            title: 'Error!',
+            text: result.error.message,
+            icon: 'error',
+            confirmButtonText: 'ok'
+        })
         return;
     }
 
@@ -34,3 +38,5 @@ export async function getAgentData() {
     agentCard.appendListText("Headquarters: " + agent.headquarters);
     agentCard.appendListText("Faction: " + agent.startingFaction);
 }
+
+initAPI();
