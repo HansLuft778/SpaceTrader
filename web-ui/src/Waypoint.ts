@@ -1,6 +1,6 @@
-import { SystemAccordion } from "./Classes/SystemAccordion";
-import { ListCard } from "./Classes/ListCard";
-import { Modal } from "./Classes/Modal";
+import { SystemAccordion } from "./Classes/SystemAccordion.js";
+import { ListCard } from "./Classes/ListCard.js";
+import { Modal } from "./Classes/Modal.js";
 
 import * as t from "./types/types";
 
