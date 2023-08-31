@@ -2,3 +2,5 @@ token.txt
 
 /__pycache__/
 /Model/__pycache__/
+.DS_Store
+/.vscode
