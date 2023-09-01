@@ -17,13 +17,17 @@ sInfoInput.addEventListener('keypress', function (e) {
     }
 });
 
-async function main(symbol: string) {
-    const isValid = checkSystemSymbolIsValid(symbol);
+async function main(waypointSymbol: string, showAccordionItemFor?: string) {
+    const isValid = checkSystemSymbolIsValid(waypointSymbol);
     if (!isValid) {
         return;
     }
 
-    const result = await getSystemInfo(symbol);
+    const systemSymbol: string = waypointSymbol.split("-")[0] + "-" + waypointSymbol.split("-")[1];
+    console.log("systemSymbol " + systemSymbol);
+    console.log("waypointSymbol " + waypointSymbol);
+
+    const result = await getSystemInfo(systemSymbol);
     if (result.error) {
         Swal.fire({
             title: 'Error!',
@@ -34,29 +38,9 @@ async function main(symbol: string) {
         return;
     }
 
-    displaySystemInfo(result);
-
-
+    displaySystemInfo(result, showAccordionItemFor);
 }
 
-function checkSystemSymbolIsValid(value: string) {
-    const regex = /^[a-zA-Z0-9]+-[a-zA-Z0-9]+(-[a-zA-Z0-9]+)?$/;
-    if (!regex.test(value)) {
-        Swal.fire({
-            title: 'Error!',
-            text: "Invalid System or Waypoint Symbol",
-            icon: 'error',
-            confirmButtonText: 'ok'
-        });
-        return false;
-    }
-
-    const systemSymbol: string = value.split("-")[0] + "-" + value.split("-")[1];
-    console.log("systemSymbol " + systemSymbol);
-    console.log("waypointSymbol " + value);
-
-    return true;
-}
 
 /**
  * Checks if the url contains a waypointSymbol parameter and if so, checks if it is valid
@@ -79,10 +63,31 @@ function checkUrlParameter() {
         sInfoInput.value = waypointSymbol;
         // clean current params
         window.history.replaceState({}, document.title, "/waypoint.html");
-        checkSystemSymbolIsValid(waypointSymbol);
+        main(waypointSymbol, waypointSymbol);
     }
 }
 checkUrlParameter();
+
+/**
+ * Checks if the system symbol is valid and displays a Swal.fire error if not
+ * 
+ * @param value the systemSymbol to check
+ * @returns boolean
+ */
+function checkSystemSymbolIsValid(value: string) {
+    const regex = /^[a-zA-Z0-9]+-[a-zA-Z0-9]+(-[a-zA-Z0-9]+)?$/;
+    if (!regex.test(value)) {
+        Swal.fire({
+            title: 'Error!',
+            text: "Invalid System or Waypoint Symbol",
+            icon: 'error',
+            confirmButtonText: 'ok'
+        });
+        return false;
+    }
+
+    return true;
+}
 
 /**
  * Fetches the SpaceTraders API for the system info
@@ -104,7 +109,7 @@ async function getSystemInfo(systemSymbol: string) {
     return result;
 }
 
-function displaySystemInfo(response: ApiResponse<Waypoint[]>) {
+function displaySystemInfo(response: ApiResponse<Waypoint[]>, showAccordionItemFor?: string) {
     const systemWaypointList: Waypoint[] = response.data;
 
     const systemAccordion = new SystemAccordion();
@@ -120,12 +125,16 @@ function displaySystemInfo(response: ApiResponse<Waypoint[]>) {
     let orbitals: string[] = [];
     systemWaypointList.forEach(waypoint => {
         // append another Item to the accordion and get its body to fill with a ListCard
-        orbitals = displayWaypointInfo(systemAccordion, waypoint, orbitals);
+        let show = false;
+        if (waypoint.symbol == showAccordionItemFor) {
+            show = true;
+        }
+        orbitals = displayWaypointInfo(systemAccordion, waypoint, orbitals, show);
     });
 }
 
-function displayWaypointInfo(systemAccordion: SystemAccordion, waypoint: Waypoint, orbitals: string[]) {
-    const accordionItem = systemAccordion.appendAccordionItem(waypoint.symbol); // TODO: add true when waypoint.symbol == waypointSymbol
+function displayWaypointInfo(systemAccordion: SystemAccordion, waypoint: Waypoint, orbitals: string[], showAccordionItem: boolean = false) {
+    const accordionItem = systemAccordion.appendAccordionItem(waypoint.symbol, showAccordionItem); // TODO: add true when waypoint.symbol == waypointSymbol
 
     // if current waypoint is an orbital, change the accordion button to show a satellite and apply margin
     if (orbitals.includes(waypoint.symbol)) {
