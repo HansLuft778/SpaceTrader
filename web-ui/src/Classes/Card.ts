@@ -1,15 +1,15 @@
+import Swal from "sweetalert2";
+
 export class Card {
 
-    private cardDiv: HTMLElement;
+    protected cardDiv: HTMLElement;
     private parentDiv: HTMLElement | null;
 
     private title: string;
     private description: string;
     private buttonText: string | undefined = undefined;
 
-    private id: number;
-
-    constructor(title: string, description: string, id?: number, buttonText?: string) {
+    constructor(title: string, description: string, buttonText?: string) {
         this.cardDiv = document.createElement("div");
         this.cardDiv.className = "card";
 
@@ -17,11 +17,6 @@ export class Card {
         this.description = description;
         if (buttonText != undefined) {
             this.buttonText = buttonText;
-        }
-        if (id != undefined) {
-            this.id = id;
-        } else {
-            this.id = -1;
         }
 
         this.parentDiv = null;
@@ -63,21 +58,6 @@ export class Card {
         cardBody.insertBefore(cardSubtext, cardBody.getElementsByClassName("card-text")[0]);
     }
 
-    addFooterButton(buttonText: string) {
-        const cardFooter = document.createElement("div");
-        cardFooter.className = "card-footer d-flex justify-content-center";
-
-        const cardButton = document.createElement("button");
-        cardButton.className = "btn btn-primary";
-        cardButton.setAttribute("data-bs-target", "#shipInfoModal" + this.id);
-        cardButton.setAttribute("data-bs-toggle", "modal");
-        cardButton.innerHTML = buttonText;
-
-        cardFooter.appendChild(cardButton);
-
-        this.cardDiv.appendChild(cardFooter);
-    }
-
     attachToParent(parentDiv: HTMLElement) {
         this.parentDiv = parentDiv;
         this.parentDiv.appendChild(this.cardDiv);
@@ -91,7 +71,7 @@ export class Card {
         this.cardDiv.insertBefore(cardImg, this.cardDiv.firstChild);
     }
 
-    public get cardMainDiv(): HTMLDivElement {
+    public get getCardDiv(): HTMLDivElement {
         return this.cardDiv as HTMLDivElement;
     }
 }

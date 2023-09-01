@@ -1,10 +1,46 @@
+import { Ship, Shipyard } from '../types/shipTypes';
+import { Card } from './Card';
+import { CardGroup } from './CardGroup';
+import { ShipInfoCard } from './CardShipInfo';
 import { Modal } from './Modal';
+import { ShipInfoModal } from './ModalShipInfo';
 
 export class ShipyardModal extends Modal {
 
     // "shipyardModal", "Shipyard", "shipyardModalLabel"
     constructor(id: string, title: string, label: string) {
         super(id, title, label);
+    }
+
+    renderBody(shipyardData: Shipyard) {
+
+        const modalBodyDiv = document.getElementById("shipyardModalBody") as HTMLDivElement;
+
+        const cardGroup = new CardGroup();
+        cardGroup.attachToParent(modalBodyDiv);;
+
+        const ships: Ship[] = shipyardData.ships;
+
+        let shipId = 0;
+        ships.forEach(ship => {
+            const card = new ShipInfoCard(ship, shipId);
+            card.addSubtext("Price: $" + ship.purchasePrice.toString());
+            // card.addFooterButton("Show more");
+            cardGroup.addCard(card);
+
+            this.addShipInfoModal(shipId, ship);
+
+            shipId++;
+        });
+
+    }
+
+    addShipInfoModal(id: number, ship: Ship) {
+        const modalParent = document.getElementById("modalsDiv") as HTMLDivElement;
+        // "#shipInfoModal" + this.id
+        const modal = new ShipInfoModal("shipInfoModal" + id, "Ship Info", "shipInfoModalLabel" + id);
+        modal.attachTo(modalParent);
+        modal.renderBody();
     }
 }
 

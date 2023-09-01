@@ -34,7 +34,7 @@ export async function getAgentData() {
     const agentCard = new ListCard(true);
     agentCard.renderCardAndAppendTo(agentDataDiv);
     agentCard.appendListText("Call sign: " + agent.symbol);
-    agentCard.appendListText("Credits: " + agent.credits);
+    agentCard.appendListText("Credits: " + agent.credits.toLocaleString());
     agentCard.appendListText("Headquarters: " + agent.headquarters, true, () => {
         window.location.href = "./waypoint.html?waypointSymbol=" + agent.headquarters;
     });

@@ -1,8 +1,6 @@
 import { Modal } from "./Modal";
 
-
-
-export class ModalShipInfo extends Modal {
+export class ShipInfoModal extends Modal {
 
     private shipInfoModalBody: HTMLDivElement | null;
 
