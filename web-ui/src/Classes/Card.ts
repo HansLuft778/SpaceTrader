@@ -1,10 +1,10 @@
-import Swal from "sweetalert2";
-
 export class Card {
 
     protected cardDiv: HTMLElement;
     protected cardButton: HTMLButtonElement | null = null;
+    protected cardBody: HTMLDivElement;
     private parentDiv: HTMLElement | null;
+    private listGroup: HTMLUListElement | null = null;
 
 
     private title: string;
@@ -14,22 +14,23 @@ export class Card {
     constructor(title: string, description: string, buttonText?: string) {
         this.cardDiv = document.createElement("div");
         this.cardDiv.className = "card";
+        if (buttonText != undefined) {
+            this.buttonText = buttonText;
+        }
+        this.cardBody = document.createElement("div");
+        this.parentDiv = null;
+
 
         this.title = title;
         this.description = description;
 
-        if (buttonText != undefined) {
-            this.buttonText = buttonText;
-        }
-
-        this.parentDiv = null;
 
         this.renderCard()
     }
 
     renderCard() {
-        const cardBody = document.createElement("div");
-        cardBody.className = "card-body";
+        this.cardBody = document.createElement("div");
+        this.cardBody.className = "card-body";
 
         const cardTitle = document.createElement("h5");
         cardTitle.className = "card-title";
@@ -39,18 +40,18 @@ export class Card {
         cardText.className = "card-text";
         cardText.innerHTML = this.description;
 
-        cardBody.appendChild(cardTitle);
-        cardBody.appendChild(cardText);
+        this.cardBody.appendChild(cardTitle);
+        this.cardBody.appendChild(cardText);
 
         if (this.buttonText != undefined) {
             console.log("adding button");
             this.cardButton = document.createElement("button");
             this.cardButton.className = "btn btn-primary";
             this.cardButton.innerHTML = this.buttonText;
-            cardBody.appendChild(this.cardButton);
+            this.cardBody.appendChild(this.cardButton);
         }
 
-        this.cardDiv.appendChild(cardBody);
+        this.cardDiv.appendChild(this.cardBody);
     }
 
     addSecondarySubtitle(subtext: string) {
@@ -76,6 +77,32 @@ export class Card {
         this.parentDiv = parentDiv;
         this.parentDiv.appendChild(this.cardDiv);
         return this.cardDiv;
+    }
+
+    /**
+     * returns the existing list group or creates a new one if it doesn't exist
+     * @returns the list group element
+     */
+    private getListBody() {
+        if (this.listGroup != null) {
+            return this.listGroup;
+        }
+
+        this.listGroup = document.createElement("ul");
+        this.listGroup.className = "list-group list-group-flush";
+
+        this.cardBody.insertBefore(this.listGroup, this.cardButton);
+        console.log("created list group");
+        
+        return this.listGroup;
+    }
+
+    addListItemToCard(text: string) {
+        const listItem = document.createElement("li");
+        listItem.className = "list-group-item";
+        listItem.innerHTML = text;
+
+        this.getListBody().appendChild(listItem);
     }
 
     addImageToCard(imageSrc: string) {

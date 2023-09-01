@@ -6,7 +6,7 @@ export class ContractCard extends Card {
     private contract: Contract;
 
     constructor(contract: Contract) {
-        super(contract.type, "Deliver " + contract.terms.deliver[0].unitsRequired.toLocaleString() + " " + contract.terms.deliver[0].tradeSymbol + " to " + contract.terms.deliver[0].destinationSymbol, contract.accepted ? "Accepted" : "Accept");
+        super(contract.type, "Deliver:", contract.accepted ? "Accepted" : "Accept");
 
         this.contract = contract;
 
@@ -20,6 +20,18 @@ export class ContractCard extends Card {
         const rewad = this.contract.terms.payment.onAccepted + this.contract.terms.payment.onFulfilled;
         this.addSecondarySubtitle("Reward: $" + rewad.toLocaleString());
         this.addTertiarySubtitle(this.contract.id)
+
+        this.contract.terms.deliver.forEach(derlivery => {
+            this.addListItemToCard("<span>" + derlivery.unitsRequired + " " + derlivery.tradeSymbol
+                + " to </span><a style=\"white-space: nowrap;\" href=\"./waypoint.html?waypointSymbol=" + derlivery.destinationSymbol + "\">"
+                + derlivery.destinationSymbol + "</a>");
+        });
+
+        const cardText = this.cardDiv.getElementsByClassName("card-text")[0] as HTMLDivElement;
+        cardText.setAttribute("style", "margin-bottom: 0px;");
+        cardText.className = "card-text fw-semibold";
+
+
 
         const acceptButton = this.cardButton as HTMLButtonElement;
         acceptButton.className = this.contract.accepted ? "btn btn-success disabled" : "btn btn-primary";
