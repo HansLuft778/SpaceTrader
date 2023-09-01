@@ -4,31 +4,53 @@ export class Modal {
     private title: string;
     private label: string;
 
+    private modalDiv: HTMLDivElement | null = null;
+    private modalLaunchButton: HTMLButtonElement | null = null;
+
     constructor(id: string, title: string, label: string) {
         this.id = id;
         this.title = title;
         this.label = label;
+
+        this.renderModalButton();
+        this.renderMondal();
     }
 
-    renderModalButtonAndAppendTo(parentDiv: HTMLElement) {
-        const modalLaunchButton = document.createElement("button");
-        modalLaunchButton.type = "button";
-        modalLaunchButton.innerHTML = "Visit";
-        modalLaunchButton.className = "btn btn-primary";
-        modalLaunchButton.setAttribute("style", "--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem; margin-left: 10px");
-        modalLaunchButton.setAttribute("data-bs-toggle", "modal");
-        modalLaunchButton.setAttribute("data-bs-target", "#shipyardModal");
-
-        parentDiv.appendChild(modalLaunchButton);
+    renderModalButton() {
+        this.modalLaunchButton = document.createElement("button");
+        this.modalLaunchButton.type = "button";
+        this.modalLaunchButton.innerHTML = "Visit";
+        this.modalLaunchButton.className = "btn btn-primary";
+        this.modalLaunchButton.setAttribute("style", "--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem; margin-left: 10px");
+        this.modalLaunchButton.setAttribute("data-bs-toggle", "modal");
+        this.modalLaunchButton.setAttribute("data-bs-target", "#shipyardModal");
     }
 
-    renderMondalAndAppendTo(parentDiv: HTMLDivElement) {
-        const modalDiv = document.createElement("div");
-        modalDiv.className = "modal fade";
-        modalDiv.setAttribute("id", this.id);
-        modalDiv.setAttribute("tabindex", "-1");
-        modalDiv.setAttribute("aria-labelledby", this.label);
-        modalDiv.setAttribute("aria-hidden", "true");
+    attachButtonTo(parentDiv: HTMLElement) {
+        if (this.modalLaunchButton == null) {
+            return;
+        }
+
+        parentDiv.appendChild(this.modalLaunchButton);
+        return this.modalLaunchButton;
+    }
+
+    attachTo(parentDiv: HTMLElement) {
+        if (this.modalDiv == null) {
+            return;
+        }
+
+        parentDiv.appendChild(this.modalDiv);
+        return this.modalDiv;
+    }
+
+    renderMondal() {
+        this.modalDiv = document.createElement("div");
+        this.modalDiv.className = "modal fade";
+        this.modalDiv.setAttribute("id", this.id);
+        this.modalDiv.setAttribute("tabindex", "-1");
+        this.modalDiv.setAttribute("aria-labelledby", this.label);
+        this.modalDiv.setAttribute("aria-hidden", "true");
 
         const modalDialogDiv = document.createElement("div");
         modalDialogDiv.className = "modal-dialog modal-dialog-centered modal-xl";
@@ -74,10 +96,9 @@ export class Modal {
 
         modalDialogDiv.appendChild(modalContentDiv);
 
-        modalDiv.appendChild(modalDialogDiv);
+        this.modalDiv.appendChild(modalDialogDiv);
 
-        parentDiv.appendChild(modalDiv);
-        return modalDiv;
+        return this.modalDiv;
     }
 }
 

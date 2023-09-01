@@ -1,5 +1,5 @@
 import { ListCard } from "./Classes/ListCard";
-import * as t from "./types/types";
+import { ApiResponse, Account } from "./types/types";
 
 import { initAPI } from "./APIkeyManager";
 
@@ -13,7 +13,7 @@ export async function getAgentData() {
             'Authorization': 'Bearer ' + sessionStorage.getItem("api_key")
         },
     };
-    const result: t.ApiResponse<t.Account> = await fetch('https://api.spacetraders.io/v2/my/agent', options)
+    const result: ApiResponse<Account> = await fetch('https://api.spacetraders.io/v2/my/agent', options)
         .then(response => response.json());
 
     console.log(result);

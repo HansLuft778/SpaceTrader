@@ -3,7 +3,7 @@ import { ListCard } from "./Classes/ListCard";
 import { renderModal } from "./Shipyard";
 import Swal from 'sweetalert2';
 
-import * as t from "./types/types";
+import { ApiResponse, Waypoint, Orbital, Trait } from "./types/types";
 
 const sInfoInput = document.getElementById('sInfoInput') as HTMLInputElement;
 
@@ -76,7 +76,7 @@ async function getSystemInfo(systemSymbol: string) {
             'Authorization': 'Bearer ' + sessionStorage.getItem("api_key")
         },
     };
-    const result: t.ApiResponse<t.Waypoint[]> = await fetch('https://api.spacetraders.io/v2/systems/' + systemSymbol + '/waypoints', options)
+    const result: ApiResponse<Waypoint[]> = await fetch('https://api.spacetraders.io/v2/systems/' + systemSymbol + '/waypoints', options)
         .then(response => response.json());
 
     console.log(result);
@@ -94,8 +94,8 @@ async function getSystemInfo(systemSymbol: string) {
     }
 }
 
-function displaySystemInfo(response: t.ApiResponse<t.Waypoint[]>) {
-    const systemWaypointList: t.Waypoint[] = response.data;
+function displaySystemInfo(response: ApiResponse<Waypoint[]>) {
+    const systemWaypointList: Waypoint[] = response.data;
 
     const systemAccordion = new SystemAccordion();
     const systemInfoDiv = document.getElementById("sInfoDiv") as HTMLDivElement;
@@ -125,7 +125,7 @@ function displaySystemInfo(response: t.ApiResponse<t.Waypoint[]>) {
 
         // find orbitals
         if (waypoint.orbitals.length > 0) {
-            orbitals = waypoint.orbitals.map((orbital: t.Orbital) => orbital.symbol);
+            orbitals = waypoint.orbitals.map((orbital: Orbital) => orbital.symbol);
             console.log(orbitals);
         }
 
@@ -143,7 +143,7 @@ function displaySystemInfo(response: t.ApiResponse<t.Waypoint[]>) {
             const listGroup = document.createElement("ul");
             listGroup.className = "list-group list-group-flush";
 
-            traits.forEach((trait: t.Trait) => {
+            traits.forEach((trait: Trait) => {
                 const listElement = document.createElement("li");
                 listElement.className = "list-group-item d-flex align-items-center justify-content-center";
                 listElement.innerHTML = trait.name;
@@ -161,12 +161,12 @@ function displaySystemInfo(response: t.ApiResponse<t.Waypoint[]>) {
     });
 }
 
-function displayWaypointInfo(response: t.ApiResponse<t.Waypoint>) {
+function displayWaypointInfo(response: ApiResponse<Waypoint>) {
     Swal.fire({
         title: response.data.symbol,
         html: "Type: " + response.data.type + "<br>" +
             "Location: " + response.data.x + ", " + response.data.y + "<br>" +
-            "Traits: " + response.data.traits.map((trait: t.Trait) => trait.name).join(", "),
+            "Traits: " + response.data.traits.map((trait: Trait) => trait.name).join(", "),
         icon: 'info',
         confirmButtonText: 'ok'
     })

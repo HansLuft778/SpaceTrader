@@ -26,7 +26,7 @@ async function acceptContract(contractID: string, button: HTMLButtonElement) {
         },
     };
 
-    const result = await fetch('https://api.spacetraders.io/v2/my/contracts/cllvhzpant1vos60c4x8qflau/accept', options)
+    const result = await fetch('https://api.spacetraders.io/v2/my/contracts/' + contractID + '/accept', options)
         .then(response => response.json()); // TODO: type definition
 
     console.log(result);

@@ -4,7 +4,7 @@ export class ShipyardModal extends Modal {
 
     private shipyardModalBody: HTMLDivElement | null;
 
-    //     "shipyardModal", "Shipyard", "shipyardModalLabel"
+    // "shipyardModal", "Shipyard", "shipyardModalLabel"
     constructor(id: string, title: string, label: string) {
         super(id, title, label);
         this.shipyardModalBody = null;
@@ -15,41 +15,17 @@ export class ShipyardModal extends Modal {
             return this.shipyardModalBody;
         }
         this.shipyardModalBody = document.getElementById(this.id + "Body") as HTMLDivElement
-        const shipyardMainDIv = document.createElement("div");
+        const shipyardMainDiv = document.createElement("div");
+        shipyardMainDiv.id = "shipyardMainDiv";
 
-        const cardGroup = document.createElement("div");
-        cardGroup.className = "card-group";
-
-        const card1 = document.createElement("div");
-        card1.className = "card";
-
-        const card1Img = document.createElement("img");
-        card1Img.src = "https://via.placeholder.com/150";
-        card1Img.className = "card-img-top";
-        card1Img.alt = "Ship Image";
-
-        const card1Body = document.createElement("div");
-        card1Body.className = "card-body";
-
-        const card1Title = document.createElement("h5");
-        card1Title.className = "card-title";
-        card1Title.innerHTML = "Ship Name";
-
-        const card1Text = document.createElement("p");
-        card1Text.className = "card-text";
-        card1Text.innerHTML = "Ship Description";
-
-        const card1Text2 = document.createElement("p");
-        card1Text2.className = "card-text";
-        
-        
-
-
-
-
-        this.shipyardModalBody.appendChild(shipyardMainDIv);
+        this.shipyardModalBody.appendChild(shipyardMainDiv);
 
         return this.shipyardModalBody;
+    }
+
+    addElementToModalBody(element: HTMLElement) {
+        const modalBody = this.renderModalBody();
+        modalBody.appendChild(element);
     }
 }
 
