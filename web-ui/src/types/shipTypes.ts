@@ -28,6 +28,11 @@ export interface Ship {
     engine: Engine;
     modules: Module[];
     mounts: Mount[];
+
+    symbol?: string;
+    nav?: Nav;
+    ceww?: Crew;
+    fuel?: Fuel;
 }
 
 export interface Frame {
@@ -38,6 +43,7 @@ export interface Frame {
     mountingPoints: number
     fuelCapacity: number;
     requirements: Requirement;
+    condition?: number;
 }
 
 export interface Requirement {
@@ -52,6 +58,7 @@ export interface Reactor {
     description: string;
     powerOutput: number;
     requirements: Requirement;
+    condition?: number;
 }
 
 export interface Engine {
@@ -60,6 +67,7 @@ export interface Engine {
     description: string;
     speed: number;
     requirements: Requirement;
+    condition?: number;
 }
 
 interface Module {
@@ -97,4 +105,55 @@ export interface Weapon extends Mount {
 
 export interface MiningLaser extends Mount {
     strength: number;
+}
+
+export interface Nav {
+    systemSymbol: string;
+    waypointSymbol: string;
+    route: Route;
+    status: string;
+    flightMode: string;
+}
+
+export interface Route {
+    departure: Departure;
+    destination: Destination;
+    arrival: string;
+    departureTime: string;
+}
+
+export interface Departure {
+    symbol: string;
+    type: string;
+    systemSymbol: string;
+    x: number;
+    y: number;
+}
+
+export interface Destination {
+    symbol: string;
+    type: string;
+    systemSymbol: string;
+    x: number;
+    y: number;
+}
+
+export interface Crew {
+    current: number;
+    capacity: number;
+    required: number;
+    rotation: string;
+    morale: number;
+    wages: number;
+}
+
+export interface Fuel {
+    current: number;
+    capacity: number;
+    consumed: Consumption;
+}
+
+export interface Consumption {
+    amount: number;
+    timestamp: string;
 }

@@ -1,5 +1,4 @@
 import { Ship, Shipyard } from '../types/shipTypes';
-import { Card } from './Card';
 import { CardGroup } from './CardGroup';
 import { ShipInfoCard } from './CardShipInfo';
 import { Modal } from './Modal';
@@ -23,7 +22,7 @@ export class ShipyardModal extends Modal {
 
         let shipId = 0;
         ships.forEach(ship => {
-            const card = new ShipInfoCard(ship, shipId);
+            const card = new ShipInfoCard(ship, shipId, shipyardData.symbol);
             card.addSecondarySubtitle("Price: $" + ship.purchasePrice.toString());
             // card.addFooterButton("Show more");
             cardGroup.addCard(card);
@@ -32,7 +31,6 @@ export class ShipyardModal extends Modal {
 
             shipId++;
         });
-
     }
 
     addShipInfoModal(id: number, ship: Ship) {

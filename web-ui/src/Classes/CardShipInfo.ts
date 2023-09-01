@@ -1,3 +1,4 @@
+import { buyShipFromYard } from "../Shipyard";
 import { Ship } from "../types/shipTypes";
 import { Card } from "./Card";
 import Swal from "sweetalert2";
@@ -6,12 +7,14 @@ export class ShipInfoCard extends Card {
 
     private id: number;
     private shipData: Ship;
+    private waypointSymbol: string;
 
-    constructor(shipData: Ship, id: number) {
+    constructor(shipData: Ship, id: number, waypointSymbol: string) {
         super(shipData.name, shipData.description);
 
         this.id = id;
         this.shipData = shipData;
+        this.waypointSymbol = waypointSymbol;
 
         this.addFooterButton();
     }
@@ -47,11 +50,28 @@ export class ShipInfoCard extends Card {
                 confirmButtonText: 'Yes, buy it for ' + this.shipData.purchasePrice.toLocaleString() + '!'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    Swal.fire(
-                        'Purchase Successful!',
-                        'You have successfully purchased the ' + this.shipData.name + '!',
-                        'success'
-                    )
+                    buyShipFromYard(this.shipData.type, this.waypointSymbol).then((result) => {
+                        console.log(result);
+                        if (result.error) {
+                            Swal.fire(
+                                'Purchase Failed!',
+                                result.error.message,
+                                'error'
+                            )
+                        }
+                        Swal.fire(
+                            'Purchase Successful!',
+                            'You have successfully purchased the ' + this.shipData.name + '!',
+                            'success'
+                        )
+                    }).catch((error: Error) => {
+                        // console.log(error);
+                        Swal.fire(
+                            'Purchase Failed!',
+                            error.message,
+                            'error'
+                        )
+                    });
                 }
             })
         });

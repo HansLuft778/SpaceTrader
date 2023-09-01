@@ -18,6 +18,26 @@ export async function getShipyardInfo(waypointSymbol: string) {
     return result;
 }
 
+export async function buyShipFromYard(shipType: string, waypointSymbol: string) {
+    const options = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + sessionStorage.getItem('api_key'),
+        },
+        body: JSON.stringify({
+            shipType: shipType,
+            waypointSymbol: waypointSymbol,
+        }),
+    };
+
+    const result = await fetch('https://api.spacetraders.io/v2/my/ships', options)
+        .then(response => response.json());
+
+    console.log(result);
+    return result;
+}
+
 export async function renderModal(parentElement: HTMLLIElement, systemSymbol: string) {
 
     const shipyardData = await getShipyardInfo(systemSymbol);
@@ -27,6 +47,5 @@ export async function renderModal(parentElement: HTMLLIElement, systemSymbol: st
     modal.attachTo(document.getElementById("modalsDiv") as HTMLDivElement);
 
     modal.renderBody(shipyardData.data);
-
 }
 

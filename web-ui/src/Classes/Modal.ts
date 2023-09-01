@@ -88,7 +88,7 @@ export class Modal {
         
         // this.modalCloseButton2 = document.createElement("button");
         this.modalCloseButton2.id = this.id + "CloseButton";
-        this.modalCloseButton2.className = "btn btn-primary";
+        this.modalCloseButton2.className = "btn btn-secondary";
         this.modalCloseButton2.setAttribute("type", "button");
         this.modalCloseButton2.setAttribute("data-bs-dismiss", "modal");
         this.modalCloseButton2.innerHTML = "Close";
