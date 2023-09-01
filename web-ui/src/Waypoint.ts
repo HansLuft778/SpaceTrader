@@ -13,9 +13,31 @@ sInfoInput.addEventListener('keypress', function (e) {
         const value: string = sInfoInput.value;
         console.log(value);
 
-        checkSystemSymbolIsValid(value);
+        main(value);
     }
 });
+
+async function main(symbol: string) {
+    const isValid = checkSystemSymbolIsValid(symbol);
+    if (!isValid) {
+        return;
+    }
+
+    const result = await getSystemInfo(symbol);
+    if (result.error) {
+        Swal.fire({
+            title: 'Error!',
+            text: result.error.message,
+            icon: 'error',
+            confirmButtonText: 'ok'
+        })
+        return;
+    }
+
+    displaySystemInfo(result);
+
+
+}
 
 function checkSystemSymbolIsValid(value: string) {
     const regex = /^[a-zA-Z0-9]+-[a-zA-Z0-9]+(-[a-zA-Z0-9]+)?$/;
@@ -26,14 +48,14 @@ function checkSystemSymbolIsValid(value: string) {
             icon: 'error',
             confirmButtonText: 'ok'
         });
-        return;
+        return false;
     }
 
     const systemSymbol: string = value.split("-")[0] + "-" + value.split("-")[1];
     console.log("systemSymbol " + systemSymbol);
     console.log("waypointSymbol " + value);
 
-    getSystemInfo(systemSymbol);
+    return true;
 }
 
 /**
@@ -79,17 +101,7 @@ async function getSystemInfo(systemSymbol: string) {
 
     console.log(result);
 
-    if (result.error) {
-        Swal.fire({
-            title: 'Error!',
-            text: result.error.message,
-            icon: 'error',
-            confirmButtonText: 'ok'
-        })
-        return;
-    } else {
-        displaySystemInfo(result);
-    }
+    return result;
 }
 
 function displaySystemInfo(response: ApiResponse<Waypoint[]>) {
@@ -108,65 +120,61 @@ function displaySystemInfo(response: ApiResponse<Waypoint[]>) {
     let orbitals: string[] = [];
     systemWaypointList.forEach(waypoint => {
         // append another Item to the accordion and get its body to fill with a ListCard
-        const accordionItem = systemAccordion.appendAccordionItem(waypoint.symbol); // TODO: add true when waypoint.symbol == waypointSymbol
-
-        // if current waypoint is an orbital, change the accordion button to show a satellite and apply margin
-        if (orbitals.includes(waypoint.symbol)) {
-            const accordionButton = document.getElementById("accordionButton" + waypoint.symbol) as HTMLButtonElement;
-
-            accordionButton.innerHTML = ""
-            const symbolSpan = document.createElement("span");
-            symbolSpan.innerHTML = "🛰️" + waypoint.symbol;
-            symbolSpan.setAttribute("style", "margin-left: 20px;");
-            accordionButton.appendChild(symbolSpan);
-        }
-
-        // find orbitals
-        if (waypoint.orbitals.length > 0) {
-            orbitals = waypoint.orbitals.map((orbital: Orbital) => orbital.symbol);
-            console.log(orbitals);
-        }
-
-        const listCard = new ListCard(false);
-        const accordionBody = accordionItem.getElementsByClassName("accordion-body")[0] as HTMLDivElement;
-        listCard.renderCardAndAppendTo(accordionBody);
-        // append waypoint type
-        listCard.appendListText("Type: " + waypoint.type);
-
-        // append traits to list
-        const traits = waypoint.traits;
-        if (traits.length > 0) {
-            listCard.appendListText("Traits:");
-
-            const listGroup = document.createElement("ul");
-            listGroup.className = "list-group list-group-flush";
-
-            traits.forEach((trait: Trait) => {
-                const listElement = document.createElement("li");
-                listElement.className = "list-group-item d-flex align-items-center justify-content-center";
-                listElement.innerHTML = trait.name;
-
-                if (trait.name == "Shipyard") {
-                    // Build the button to visit a shipyard
-                    renderModal(listElement, waypoint.symbol);
-                }
-                listGroup.appendChild(listElement);
-            });
-            listCard.appendListElement(listGroup);
-        }
-        // append location to list
-        listCard.appendListText("Location: " + waypoint.x + ", " + waypoint.y);
+        orbitals = displayWaypointInfo(systemAccordion, waypoint, orbitals);
     });
 }
 
-function displayWaypointInfo(response: ApiResponse<Waypoint>) {
-    Swal.fire({
-        title: response.data.symbol,
-        html: "Type: " + response.data.type + "<br>" +
-            "Location: " + response.data.x + ", " + response.data.y + "<br>" +
-            "Traits: " + response.data.traits.map((trait: Trait) => trait.name).join(", "),
-        icon: 'info',
-        confirmButtonText: 'ok'
-    })
+function displayWaypointInfo(systemAccordion: SystemAccordion, waypoint: Waypoint, orbitals: string[]) {
+    const accordionItem = systemAccordion.appendAccordionItem(waypoint.symbol); // TODO: add true when waypoint.symbol == waypointSymbol
+
+    // if current waypoint is an orbital, change the accordion button to show a satellite and apply margin
+    if (orbitals.includes(waypoint.symbol)) {
+        const accordionButton = document.getElementById("accordionButton" + waypoint.symbol) as HTMLButtonElement;
+
+        accordionButton.innerHTML = "";
+        const symbolSpan = document.createElement("span");
+        symbolSpan.innerHTML = "🛰️" + waypoint.symbol;
+        symbolSpan.setAttribute("style", "margin-left: 20px;");
+        accordionButton.appendChild(symbolSpan);
+    }
+
+    // find orbitals
+    if (waypoint.orbitals.length > 0) {
+        orbitals = waypoint.orbitals.map((orbital: Orbital) => orbital.symbol);
+        console.log(orbitals);
+    }
+
+    const listCard = new ListCard(false);
+    const accordionBody = accordionItem.getElementsByClassName("accordion-body")[0] as HTMLDivElement;
+    listCard.renderCardAndAppendTo(accordionBody);
+    // append waypoint type
+    listCard.appendListText("Type: " + waypoint.type);
+
+    // append traits to list
+    const traits = waypoint.traits;
+    if (traits.length > 0) {
+        listCard.appendListText("Traits:");
+
+        const listGroup = document.createElement("ul");
+        listGroup.className = "list-group list-group-flush";
+
+        traits.forEach((trait: Trait) => {
+            const listElement = document.createElement("li");
+            listElement.className = "list-group-item d-flex align-items-center justify-content-center";
+            listElement.innerHTML = trait.name;
+
+            if (trait.name == "Shipyard") {
+                // Build the button to visit a shipyard
+                renderModal(listElement, waypoint.symbol);
+            }
+            listGroup.appendChild(listElement);
+        });
+        listCard.appendListElement(listGroup);
+    }
+    // append location to list
+    listCard.appendListText("Location: " + waypoint.x + ", " + waypoint.y);
+    return orbitals;
 }
+
+
 
