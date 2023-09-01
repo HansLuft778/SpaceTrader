@@ -1,4 +1,4 @@
-import type { Shipyard } from "./shipTypes";
+import type { Ship, Shipyard } from "./shipTypes";
 
 type AllowedDataTypes = Contract[] | Waypoint | Waypoint[] | Account | Shipyard;
 
@@ -6,6 +6,11 @@ export interface ApiResponse<T extends AllowedDataTypes> {
     data: T;
     meta: Meta;
     error?: Error;
+}
+
+export interface Error {
+    code: number;
+    message: string;
 }
 
 export interface Account {
@@ -87,3 +92,19 @@ export interface Payment {
     onFulfilled: number;
 }
 
+
+// ############################## SHIP BOUGHT ##############################
+
+export interface ShipBought {
+    agent: Account;
+    ship: Ship;
+    transaction: Transaction;
+}
+
+export interface Transaction {
+    shipSymbol: string;
+    waypointSymbol: string;
+    agentSymbol: string;
+    price: number;
+    timestamp: string;
+}
