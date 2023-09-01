@@ -150,7 +150,7 @@ function displaySystemInfo(response: ApiResponse<Waypoint[]>) {
 
                 if (trait.name == "Shipyard") {
                     // Build the button to visit a shipyard
-                    renderModal(listElement);
+                    renderModal(listElement, waypoint.symbol);
                 }
                 listGroup.appendChild(listElement);
             });

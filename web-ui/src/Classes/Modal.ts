@@ -6,11 +6,14 @@ export class Modal {
 
     private modalDiv: HTMLDivElement | null = null;
     private modalLaunchButton: HTMLButtonElement | null = null;
+    private modalCloseButton2: HTMLButtonElement;
 
     constructor(id: string, title: string, label: string) {
         this.id = id;
         this.title = title;
         this.label = label;
+
+        this.modalCloseButton2 = document.createElement("button");
 
         this.renderModalButton();
         this.renderMondal();
@@ -81,14 +84,16 @@ export class Modal {
 
         const modalFooterDiv = document.createElement("div");
         modalFooterDiv.className = "modal-footer";
+        console.log(this.id + "CloseButton");
+        
+        // this.modalCloseButton2 = document.createElement("button");
+        this.modalCloseButton2.id = this.id + "CloseButton";
+        this.modalCloseButton2.className = "btn btn-primary";
+        this.modalCloseButton2.setAttribute("type", "button");
+        this.modalCloseButton2.setAttribute("data-bs-dismiss", "modal");
+        this.modalCloseButton2.innerHTML = "Close";
 
-        const modalCloseButton2 = document.createElement("button");
-        modalCloseButton2.className = "btn btn-primary";
-        modalCloseButton2.setAttribute("type", "button");
-        modalCloseButton2.setAttribute("data-bs-dismiss", "modal");
-        modalCloseButton2.innerHTML = "Close";
-
-        modalFooterDiv.appendChild(modalCloseButton2);
+        modalFooterDiv.appendChild(this.modalCloseButton2);
 
         modalContentDiv.appendChild(modalHeaderDiv);
         modalContentDiv.appendChild(modalBodyDiv);
@@ -100,12 +105,18 @@ export class Modal {
 
         return this.modalDiv;
     }
+
+    
+    public get closeButton2() : HTMLButtonElement{
+        return this.modalCloseButton2;
+    }
+    
 }
 
 
 /**
     <div class="modal fade" id="shipyardModal" tabindex="-1" aria-labelledby="shipyardModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="shipyardModalLabel">Shipyard</h1>

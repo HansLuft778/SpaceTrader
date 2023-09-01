@@ -7,14 +7,21 @@ export class Card {
     private description: string;
     private buttonText: string | undefined = undefined;
 
-    constructor(title: string, description: string, buttonText?: string) {
+    private id: number;
+
+    constructor(title: string, description: string, id?: number, buttonText?: string) {
         this.cardDiv = document.createElement("div");
         this.cardDiv.className = "card";
 
         this.title = title;
         this.description = description;
-        if (buttonText != null) {
+        if (buttonText != undefined) {
             this.buttonText = buttonText;
+        }
+        if (id != undefined) {
+            this.id = id;
+        } else {
+            this.id = -1;
         }
 
         this.parentDiv = null;
@@ -58,10 +65,12 @@ export class Card {
 
     addFooterButton(buttonText: string) {
         const cardFooter = document.createElement("div");
-        cardFooter.className = "card-footer";
+        cardFooter.className = "card-footer d-flex justify-content-center";
 
         const cardButton = document.createElement("button");
         cardButton.className = "btn btn-primary";
+        cardButton.setAttribute("data-bs-target", "#shipInfoModal" + this.id);
+        cardButton.setAttribute("data-bs-toggle", "modal");
         cardButton.innerHTML = buttonText;
 
         cardFooter.appendChild(cardButton);

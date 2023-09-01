@@ -24,7 +24,7 @@ export class CardGroup {
             return;
         }
 
-        const card = new Card(title, description, buttonText);
+        const card = new Card(title, description, undefined, buttonText);
         const cardDiv = card.attachToParent(this.cardGroupDiv);
 
         this.cards.push(card);

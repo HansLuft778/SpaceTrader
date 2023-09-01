@@ -2,30 +2,9 @@ import { Modal } from './Modal';
 
 export class ShipyardModal extends Modal {
 
-    private shipyardModalBody: HTMLDivElement | null;
-
     // "shipyardModal", "Shipyard", "shipyardModalLabel"
     constructor(id: string, title: string, label: string) {
         super(id, title, label);
-        this.shipyardModalBody = null;
-    }
-
-    renderModalBody() {
-        if (this.shipyardModalBody != null) {
-            return this.shipyardModalBody;
-        }
-        this.shipyardModalBody = document.getElementById(this.id + "Body") as HTMLDivElement
-        const shipyardMainDiv = document.createElement("div");
-        shipyardMainDiv.id = "shipyardMainDiv";
-
-        this.shipyardModalBody.appendChild(shipyardMainDiv);
-
-        return this.shipyardModalBody;
-    }
-
-    addElementToModalBody(element: HTMLElement) {
-        const modalBody = this.renderModalBody();
-        modalBody.appendChild(element);
     }
 }
 
