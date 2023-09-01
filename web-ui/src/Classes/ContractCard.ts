@@ -22,7 +22,7 @@ export class Card {
 
         const cardSubtitleSec = document.createElement("h6");
         cardSubtitleSec.className = "card-subtitle mb-2 text-body-secondary";
-        var date = new Date(this.contract.expiresAt);
+        var date = new Date(this.contract.terms.deadline);
         cardSubtitleSec.innerHTML = date.toLocaleString("de-DE");
 
         const cardSubtitleSec2 = document.createElement("h6");
