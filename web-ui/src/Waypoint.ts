@@ -49,10 +49,8 @@ function checkUrlParameter() {
     if (!urlParams.has('waypointSymbol')) {
         return;
     }
-    console.log(urlParams + " " + typeof urlParams);
 
     const waypointSymbol = urlParams.get('waypointSymbol');
-    console.log(waypointSymbol + " " + typeof waypointSymbol);
 
     if (waypointSymbol) {
         console.log(waypointSymbol);
@@ -110,7 +108,7 @@ function displaySystemInfo(response: ApiResponse<Waypoint[]>) {
     let orbitals: string[] = [];
     systemWaypointList.forEach(waypoint => {
         // append another Item to the accordion and get its body to fill with a ListCard
-        const accordionItem = systemAccordion.appendAccordionItem(waypoint.symbol);
+        const accordionItem = systemAccordion.appendAccordionItem(waypoint.symbol); // TODO: add true when waypoint.symbol == waypointSymbol
 
         // if current waypoint is an orbital, change the accordion button to show a satellite and apply margin
         if (orbitals.includes(waypoint.symbol)) {

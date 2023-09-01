@@ -15,7 +15,7 @@ export class SystemAccordion {
         parentDiv.appendChild(this.accordionDiv);
     }
 
-    appendAccordionItem(id: string) {
+    appendAccordionItem(id: string, show: boolean = false) {
         const accordionItem = document.createElement("div");
         accordionItem.className = "accordion-item";
 
@@ -24,11 +24,11 @@ export class SystemAccordion {
 
         const accordionButton = document.createElement("button");
         accordionButton.id = "accordionButton" + id;
-        accordionButton.className = "accordion-button";
+        accordionButton.className = "accordion-button " + (show ? "" : "collapsed");
         accordionButton.type = "button";
         accordionButton.setAttribute("data-bs-toggle", "collapse");
         accordionButton.setAttribute("data-bs-target", "#collapse" + id);
-        accordionButton.setAttribute("aria-expanded", "true");
+        accordionButton.setAttribute("aria-expanded", show ? "true" : "false");
         accordionButton.setAttribute("aria-controls", "collapse" + id);
         accordionButton.innerHTML = "🪐" + id; // THIS NEEDS TO HAVE MARGIN LEFT + emote
 
@@ -37,7 +37,7 @@ export class SystemAccordion {
 
         const accordionCollapse = document.createElement("div");
         accordionCollapse.id = "collapse" + id;
-        accordionCollapse.className = "accordion-collapse collapse";
+        accordionCollapse.className = "accordion-collapse collapse " + (show ? "show" : "");
         accordionCollapse.setAttribute("aria-labelledby", "heading" + id);
         accordionCollapse.setAttribute("data-bs-parent", "#systemAccordion");
 
