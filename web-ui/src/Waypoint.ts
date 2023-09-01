@@ -1,39 +1,74 @@
 import { SystemAccordion } from "./Classes/SystemAccordion";
 import { ListCard } from "./Classes/ListCard";
-import { Modal } from "./Classes/Modal";
+import { renderModal } from "./Shipyard";
+import Swal from 'sweetalert2';
 
 import * as t from "./types/types";
 
-import Swal from 'sweetalert2';
+const sInfoInput = document.getElementById('sInfoInput') as HTMLInputElement;
 
-
-const swInfoInput = document.getElementById('SWInfoInput') as HTMLInputElement;
-
-swInfoInput.addEventListener('keypress', function (e) {
+sInfoInput.addEventListener('keypress', function (e) {
     if (e.key === "Enter") {
         e.preventDefault();
-        const value: string = swInfoInput.value;
+        const value: string = sInfoInput.value;
         console.log(value);
 
-        const regex = /^[a-zA-Z0-9]+-[a-zA-Z0-9]+(-[a-zA-Z0-9]+)?$/;
-        if (!regex.test(value)) {
-            Swal.fire({
-                title: 'Error!',
-                text: "Invalid System or Waypoint Symbol",
-                icon: 'error',
-                confirmButtonText: 'ok'
-            })
-            return;
-        }
-
-        const systemSymbol: string = value.split("-")[0] + "-" + value.split("-")[1];
-        console.log("systemSymbol " + systemSymbol);
-        console.log("waypointSymbol " + value);
-
-        getSystemInfo(systemSymbol);
+        checkSystemSymbolIsValid(value);
     }
 });
 
+function checkSystemSymbolIsValid(value: string) {
+    const regex = /^[a-zA-Z0-9]+-[a-zA-Z0-9]+(-[a-zA-Z0-9]+)?$/;
+    if (!regex.test(value)) {
+        Swal.fire({
+            title: 'Error!',
+            text: "Invalid System or Waypoint Symbol",
+            icon: 'error',
+            confirmButtonText: 'ok'
+        });
+        return;
+    }
+
+    const systemSymbol: string = value.split("-")[0] + "-" + value.split("-")[1];
+    console.log("systemSymbol " + systemSymbol);
+    console.log("waypointSymbol " + value);
+
+    getSystemInfo(systemSymbol);
+}
+
+/**
+ * Checks if the url contains a waypointSymbol parameter and if so, checks if it is valid
+ * and displays the system info
+ * 
+ * @returns void
+ */
+function checkUrlParameter() {
+    console.log("checkUrlParameter");
+    const urlParams = new URLSearchParams(window.location.search);
+
+    if (!urlParams.has('waypointSymbol')) {
+        return;
+    }
+    console.log(urlParams + " " + typeof urlParams);
+
+    const waypointSymbol = urlParams.get('waypointSymbol');
+    console.log(waypointSymbol + " " + typeof waypointSymbol);
+
+    if (waypointSymbol) {
+        console.log(waypointSymbol);
+        sInfoInput.value = waypointSymbol;
+        // clean current params
+        window.history.replaceState({}, document.title, "/waypoint.html");
+        checkSystemSymbolIsValid(waypointSymbol);
+    }
+}
+checkUrlParameter();
+
+/**
+ * Fetches the SpaceTraders API for the system info
+ * @param systemSymbol System Symbol
+ * @returns void
+ */
 async function getSystemInfo(systemSymbol: string) {
     const options = {
         headers: {
@@ -63,10 +98,9 @@ function displaySystemInfo(response: t.ApiResponse<t.Waypoint[]>) {
     const systemWaypointList: t.Waypoint[] = response.data;
 
     const systemAccordion = new SystemAccordion();
+    const systemInfoDiv = document.getElementById("sInfoDiv") as HTMLDivElement;
 
     // clean up
-    const systemInfoDiv = document.getElementById("SWInfoDiv") as HTMLDivElement;
-
     while (systemInfoDiv.firstChild) {
         systemInfoDiv.removeChild(systemInfoDiv.firstChild);
     }
@@ -91,10 +125,6 @@ function displaySystemInfo(response: t.ApiResponse<t.Waypoint[]>) {
 
         // find orbitals
         if (waypoint.orbitals.length > 0) {
-            console.log("orbitals found");
-            // waypoint.orbitals.forEach((orbital: Orbital) => {
-            //     orbitals.push(orbital.symbol);
-            // });
             orbitals = waypoint.orbitals.map((orbital: t.Orbital) => orbital.symbol);
             console.log(orbitals);
         }
@@ -120,18 +150,7 @@ function displaySystemInfo(response: t.ApiResponse<t.Waypoint[]>) {
 
                 if (trait.name == "Shipyard") {
                     // Build the button to visit a shipyard
-                    const modalLaunchButton = document.createElement("button");
-                    modalLaunchButton.type = "button";
-                    modalLaunchButton.innerHTML = "Visit";
-                    modalLaunchButton.className = "btn btn-primary";
-                    modalLaunchButton.setAttribute("style", "--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem; margin-left: 10px");
-                    modalLaunchButton.setAttribute("data-bs-toggle", "modal");
-                    modalLaunchButton.setAttribute("data-bs-target", "#shipyardModal");
-
-                    const modal = new Modal("shipyardModal", "Shipyard", "shipyardModalLabel");
-                    modal.renderMondalAndAppendTo(document.getElementById("modalsDiv") as HTMLDivElement);
-
-                    listElement.appendChild(modalLaunchButton);
+                    renderModal(listElement);
                 }
                 listGroup.appendChild(listElement);
             });
@@ -143,5 +162,13 @@ function displaySystemInfo(response: t.ApiResponse<t.Waypoint[]>) {
 }
 
 function displayWaypointInfo(response: t.ApiResponse<t.Waypoint>) {
-    console.log("displayWaypointInfo");
+    Swal.fire({
+        title: response.data.symbol,
+        html: "Type: " + response.data.type + "<br>" +
+            "Location: " + response.data.x + ", " + response.data.y + "<br>" +
+            "Traits: " + response.data.traits.map((trait: t.Trait) => trait.name).join(", "),
+        icon: 'info',
+        confirmButtonText: 'ok'
+    })
 }
+

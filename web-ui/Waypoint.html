@@ -46,16 +46,31 @@
 
             </div>
             <div class="col-lg">
-                <h3 style="margin-top: 8px;">System/Waypoint lookup</h3>
-                <div class="input-group mb-3">
-                    <span class="input-group-text" id="basic-addon1">System/Waypoint</span>
-                    <input id="SWInfoInput" type="text" class="form-control" placeholder="X1-DF55-20250Z"
-                        aria-label="Username" aria-describedby="basic-addon1">
+                <div class="row">
+                    <h3 style="margin-top: 8px;">System lookup</h3>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="system-lookup-label">System</span>
+                        <input id="sInfoInput" type="text" class="form-control" placeholder="X1-DF55"
+                            aria-label="Username" aria-describedby="system-lookup-label">
+                    </div>
+                    <p id="WaypointDescriptor">X1-DF55</p>
+                    <div id="sInfoDiv" class="flex-column">
+                        <!-- Dynamic rendered System/Waypoint info is here -->
+                    </div>
                 </div>
-                <p id="WaypointDescriptor">X1-DF55-20250Z</p>
-                <div id="SWInfoDiv" class="flex-column">
-                    <!-- Dynamic rendered System/Waypoint info is here -->
+                <div class="row">
+                    <h3 style="margin-top: 8px;">Waypoint lookup</h3>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="waypoint-lookup-label">Waypoint</span>
+                        <input id="wInfoInput" type="text" class="form-control" placeholder="X1-QB20-61050B"
+                            aria-label="Username" aria-describedby="waypoint-lookup-label">
+                    </div>
+                    <p id="WaypointDescriptor">X1-QB20-61050B</p>
+                    <div id="wInfoDiv" class="flex-column">
+                        <!-- Dynamic rendered System/Waypoint info is here -->
+                    </div>
                 </div>
+
             </div>
         </div>
     </div>

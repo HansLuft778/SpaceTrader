@@ -34,10 +34,16 @@ export class ListCard {
         return cardDiv;
     }
 
-    appendListText(text: string) {
+    appendListText(text: string, clickable: boolean = false, onClick: Function = Function) {
         const listElement = document.createElement("li");
         listElement.className = "list-group-item";
         listElement.innerHTML = text;
+        if (clickable) {
+            listElement.setAttribute("style", "cursor: pointer;");
+            listElement.addEventListener("click", () => {
+                onClick();
+            });
+        }
         this.listGroup.appendChild(listElement);
     }
 

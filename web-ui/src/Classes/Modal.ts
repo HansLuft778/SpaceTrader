@@ -1,6 +1,6 @@
 export class Modal {
 
-    private id: string;
+    protected id: string;
     private title: string;
     private label: string;
 
@@ -8,6 +8,18 @@ export class Modal {
         this.id = id;
         this.title = title;
         this.label = label;
+    }
+
+    renderModalButtonAndAppendTo(parentDiv: HTMLElement) {
+        const modalLaunchButton = document.createElement("button");
+        modalLaunchButton.type = "button";
+        modalLaunchButton.innerHTML = "Visit";
+        modalLaunchButton.className = "btn btn-primary";
+        modalLaunchButton.setAttribute("style", "--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem; margin-left: 10px");
+        modalLaunchButton.setAttribute("data-bs-toggle", "modal");
+        modalLaunchButton.setAttribute("data-bs-target", "#shipyardModal");
+
+        parentDiv.appendChild(modalLaunchButton);
     }
 
     renderMondalAndAppendTo(parentDiv: HTMLDivElement) {
@@ -19,7 +31,7 @@ export class Modal {
         modalDiv.setAttribute("aria-hidden", "true");
 
         const modalDialogDiv = document.createElement("div");
-        modalDialogDiv.className = "modal-dialog modal-dialog-centered modal-lg";
+        modalDialogDiv.className = "modal-dialog modal-dialog-centered modal-xl";
 
         const modalContentDiv = document.createElement("div");
         modalContentDiv.className = "modal-content";
@@ -43,6 +55,7 @@ export class Modal {
 
         const modalBodyDiv = document.createElement("div");
         modalBodyDiv.className = "modal-body";
+        modalBodyDiv.id = this.id + "Body";
 
         const modalFooterDiv = document.createElement("div");
         modalFooterDiv.className = "modal-footer";
