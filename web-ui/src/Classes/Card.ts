@@ -3,7 +3,9 @@ import Swal from "sweetalert2";
 export class Card {
 
     protected cardDiv: HTMLElement;
+    protected cardButton: HTMLButtonElement | null = null;
     private parentDiv: HTMLElement | null;
+
 
     private title: string;
     private description: string;
@@ -15,6 +17,7 @@ export class Card {
 
         this.title = title;
         this.description = description;
+
         if (buttonText != undefined) {
             this.buttonText = buttonText;
         }
@@ -36,24 +39,35 @@ export class Card {
         cardText.className = "card-text";
         cardText.innerHTML = this.description;
 
-        if (this.buttonText != null && this.buttonText != undefined) {
-            const cardButton = document.createElement("button");
-            cardButton.className = "btn btn-primary";
-            cardButton.innerHTML = this.buttonText;
-            cardBody.appendChild(cardButton);
-        }
-
         cardBody.appendChild(cardTitle);
         cardBody.appendChild(cardText);
+
+        if (this.buttonText != undefined) {
+            console.log("adding button");
+            this.cardButton = document.createElement("button");
+            this.cardButton.className = "btn btn-primary";
+            this.cardButton.innerHTML = this.buttonText;
+            cardBody.appendChild(this.cardButton);
+        }
 
         this.cardDiv.appendChild(cardBody);
     }
 
-    addSubtext(subtext: string) {
-        const cardSubtext = document.createElement("small");
+    addSecondarySubtitle(subtext: string) {
+        const cardSubtext = document.createElement("h6");
         cardSubtext.className = "card-subtitle mb-2 text-body-secondary";
         cardSubtext.innerHTML = subtext;
 
+        const cardBody = this.cardDiv.getElementsByClassName("card-body")[0] as HTMLDivElement;
+        cardBody.insertBefore(cardSubtext, cardBody.getElementsByClassName("card-text")[0]);
+    }
+
+    addTertiarySubtitle(subtext: string) {
+        const cardSubtext = document.createElement("h6");
+        cardSubtext.className = "card-subtitle mb-2 text-body-tertiary";
+        cardSubtext.innerHTML = subtext;
+
+        // append this after the last secondary subtitle
         const cardBody = this.cardDiv.getElementsByClassName("card-body")[0] as HTMLDivElement;
         cardBody.insertBefore(cardSubtext, cardBody.getElementsByClassName("card-text")[0]);
     }

@@ -24,7 +24,7 @@ export class ShipyardModal extends Modal {
         let shipId = 0;
         ships.forEach(ship => {
             const card = new ShipInfoCard(ship, shipId);
-            card.addSubtext("Price: $" + ship.purchasePrice.toString());
+            card.addSecondarySubtitle("Price: $" + ship.purchasePrice.toString());
             // card.addFooterButton("Show more");
             cardGroup.addCard(card);
 

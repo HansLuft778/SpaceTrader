@@ -1,4 +1,4 @@
-import { Card } from "./Classes/ContractCard";
+import { ContractCard } from "./Classes/ContractCard";
 import * as t from "./types/types"
 import Swal from 'sweetalert2';
 
@@ -52,14 +52,10 @@ function updateButtonStatus(button: HTMLButtonElement) {
 function displayContracts(rawData: t.ApiResponse<t.Contract[]>) {
     const contractsDiv = document.getElementById("contractList") as HTMLDivElement;
 
-    rawData.data.forEach(contract => {
-        const card = new Card(contract);
-        const cardDiv = card.renderCardAndAppendTo(contractsDiv);
-
-        const acceptButton = cardDiv.getElementsByTagName("button")[0] as HTMLButtonElement;
-        acceptButton.onclick = function () {
-            acceptContract(contract.id, acceptButton);
-        }
+    rawData.data.forEach(contract => {        
+        const card = new ContractCard(contract);
+        card.appendTo(contractsDiv);
+        card.addEventHandler(acceptContract);
     });
 }
 
