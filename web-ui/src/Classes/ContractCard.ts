@@ -31,8 +31,6 @@ export class ContractCard extends Card {
         cardText.setAttribute("style", "margin-bottom: 0px;");
         cardText.className = "card-text fw-semibold";
 
-
-
         const acceptButton = this.cardButton as HTMLButtonElement;
         acceptButton.className = this.contract.accepted ? "btn btn-success disabled" : "btn btn-primary";
         acceptButton.innerHTML = this.contract.accepted ? "Accepted" : "Accept";
@@ -47,5 +45,19 @@ export class ContractCard extends Card {
         acceptButton.addEventListener("click", () => {
             handler(this.contract.id, acceptButton);
         });
+    }
+
+    addListItemToCard(text: string): void {
+        if (this.listGroup == null) {
+            this.listGroup = document.createElement("ul");
+            this.listGroup.className = "list-group list-group";
+            this.listGroup.style.marginBottom = "8px";
+            this.cardBody.insertBefore(this.listGroup, this.cardButton)
+        }
+
+        const listItem = document.createElement("li");
+        listItem.className = "list-group-item";
+        listItem.innerHTML = text;
+        this.listGroup.appendChild(listItem);
     }
 }

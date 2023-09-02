@@ -3,8 +3,8 @@ export class Card {
     protected cardDiv: HTMLElement;
     protected cardButton: HTMLButtonElement | null = null;
     protected cardBody: HTMLDivElement;
+    protected listGroup: HTMLUListElement | null = null;
     private parentDiv: HTMLElement | null;
-    private listGroup: HTMLUListElement | null = null;
 
 
     private title: string;
@@ -43,14 +43,17 @@ export class Card {
         this.cardBody.appendChild(cardTitle);
         this.cardBody.appendChild(cardText);
 
+        this.cardButton = document.createElement("button");
+        this.cardButton.className = "btn btn-primary";
+        
         if (this.buttonText != undefined) {
             console.log("adding button");
-            this.cardButton = document.createElement("button");
-            this.cardButton.className = "btn btn-primary";
             this.cardButton.innerHTML = this.buttonText;
-            this.cardBody.appendChild(this.cardButton);
+        } else {
+            this.cardButton.hidden = true;
         }
-
+        
+        this.cardBody.appendChild(this.cardButton);
         this.cardDiv.appendChild(this.cardBody);
     }
 
@@ -91,8 +94,9 @@ export class Card {
         this.listGroup = document.createElement("ul");
         this.listGroup.className = "list-group list-group-flush";
 
-        this.cardBody.insertBefore(this.listGroup, this.cardButton);
-        console.log("created list group");
+        // this.cardBody.insertBefore(this.listGroup, this.cardButton);
+        this.cardDiv.appendChild(this.listGroup);
+        console.log("created list group: " + this.listGroup);
         
         return this.listGroup;
     }

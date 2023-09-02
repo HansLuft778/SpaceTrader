@@ -14,9 +14,23 @@ async function getFleet() {
         .then(response => response.json());
 
     console.log(result);
+    return result;
 }
 
-getFleet();
+async function getSystemInfo(systemSymbol: string) {
+    const options = {
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + sessionStorage.getItem("api_key")
+        },
+    };
+    const result: ApiResponse<Waypoint[]> = await fetch('https://api.spacetraders.io/v2/systems/' + systemSymbol + '/waypoints', options)
+        .then(response => response.json());
+
+    console.log(result);
+
+    return result;
+}
 
 async function drawMap(systemSymbol: string) {
 
@@ -42,30 +56,25 @@ async function drawMap(systemSymbol: string) {
         }
     });
 
+    let axisDimensions: number[] = [xMin, xMax, yMin, yMax];
 
-    const map = new Map(xMin, xMax, yMin, yMax);
+    const map = new Map(axisDimensions);
 
     systemData.data.forEach(waypoint => {
         map.addWaypoint(waypoint.x, waypoint.y);
     });
 }
 
-async function getSystemInfo(systemSymbol: string) {
-    const options = {
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + sessionStorage.getItem("api_key")
-        },
-    };
-    const result: ApiResponse<Waypoint[]> = await fetch('https://api.spacetraders.io/v2/systems/' + systemSymbol + '/waypoints', options)
-        .then(response => response.json());
-
-    console.log(result);
-
-    return result;
+function renderShipList() {
+    
 }
 
-// Call drawMap when the document is ready and when the window is resized
+async function main() {
+    const fleetData = await getFleet();
+    drawMap("X1-JC68");
+}
+
+
 document.addEventListener("DOMContentLoaded", () => {
-    drawMap("X1-QB20");
+    main();
 });

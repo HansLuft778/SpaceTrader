@@ -4,21 +4,20 @@ export class Map {
     private mapContainer: HTMLDivElement;
     private svgNS: string = "http://www.w3.org/2000/svg";
 
-    private xMin: number;
-    private xMax: number;
-    private yMin: number;
-    private yMax: number;
+    private xMin: number = 0;
+    private xMax: number = 0;
+    private yMin: number = 0;
+    private yMax: number = 0;
 
-    constructor(xMin: number, xMax: number, yMin: number, yMax: number) {
-        this.xMin = xMin;
-        this.xMax = xMax;
-        this.yMin = yMin;
-        this.yMax = yMax;
+    private axisDimensions: number[];
 
-        console.log("xMin: " + this.xMin);
-        console.log("xMax: " + this.xMax);
-        console.log("yMin: " + this.yMin);
-        console.log("yMax: " + this.yMax);
+    constructor(axisDimensions: number[]) {
+        this.axisDimensions = axisDimensions;
+
+        console.log("xMin: " + this.axisDimensions[0]);
+        console.log("xMax: " + this.axisDimensions[1]);
+        console.log("yMin: " + this.axisDimensions[2]);
+        console.log("yMax: " + this.axisDimensions[3]);
 
         this.getMapBondaries(true);
 
@@ -35,24 +34,15 @@ export class Map {
     }
 
     private getMapBondaries(option: boolean = true) {
-        const xMinAbs = Math.abs(this.xMin);
-        const yMinAbs = Math.abs(this.yMin);
 
-        let biggestNumber = 0;
+        const absArray = this.axisDimensions.map((value) => {
+            return Math.abs(value);
+        });
+
+        let biggestNumber = Math.max(...absArray) + 10;
 
         if (option) {
             // option 1: x-axis and y-axis are the same length, depending on the biggest coordinate from a waypoint
-            if (xMinAbs > this.xMax) {
-                biggestNumber = xMinAbs;
-            } else {
-                biggestNumber = this.xMax;
-            }
-            if (yMinAbs > biggestNumber) {
-                biggestNumber = yMinAbs;
-            } else {
-                biggestNumber = this.yMax;
-            }
-
             console.log("biggestNumber: " + biggestNumber);
 
             this.xMin = -biggestNumber;
@@ -61,15 +51,15 @@ export class Map {
             this.yMax = biggestNumber;
         } else {
             // option 2: x-axis and y-axis are diffrent length, depending on the corresponding coordinate
-            if (xMinAbs > this.xMax) {
-                this.xMax = xMinAbs;
+            if (absArray[0] > this.axisDimensions[1]) {
+                this.xMax = absArray[0];
             } else {
-                this.xMin = -this.xMax;
+                this.xMin = -absArray[0];
             }
-            if (yMinAbs > this.yMax) {
-                this.yMax = yMinAbs;
+            if (absArray[2] > this.axisDimensions[3]) {
+                this.yMax = absArray[2];
             } else {
-                this.yMin = -this.yMax;
+                this.yMin = -absArray[2];
             }
         }
 

@@ -35,10 +35,8 @@ export class ShipyardModal extends Modal {
 
     addShipInfoModal(id: number, ship: Ship) {
         const modalParent = document.getElementById("modalsDiv") as HTMLDivElement;
-        // "#shipInfoModal" + this.id
-        const modal = new ShipInfoModal("shipInfoModal" + id, "Ship Info", "shipInfoModalLabel" + id);
+        const modal = new ShipInfoModal("shipInfoModal" + id, "shipInfoModalLabel" + id, ship);
         modal.attachTo(modalParent);
-        modal.renderBody();
     }
 }
 

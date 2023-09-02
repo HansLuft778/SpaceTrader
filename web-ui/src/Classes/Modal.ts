@@ -7,6 +7,7 @@ export class Modal {
     private modalDiv: HTMLDivElement | null = null;
     private modalLaunchButton: HTMLButtonElement | null = null;
     private modalCloseButton2: HTMLButtonElement;
+    protected modalBodyDiv: HTMLDivElement;
 
     constructor(id: string, title: string, label: string) {
         this.id = id;
@@ -14,6 +15,7 @@ export class Modal {
         this.label = label;
 
         this.modalCloseButton2 = document.createElement("button");
+        this.modalBodyDiv = document.createElement("div");
 
         this.renderModalButton();
         this.renderMondal();
@@ -78,9 +80,8 @@ export class Modal {
         modalHeaderDiv.appendChild(modalTitle);
         modalHeaderDiv.appendChild(modalCloseButton);
 
-        const modalBodyDiv = document.createElement("div");
-        modalBodyDiv.className = "modal-body";
-        modalBodyDiv.id = this.id + "Body";
+        this.modalBodyDiv.className = "modal-body";
+        this.modalBodyDiv.id = this.id + "Body";
 
         const modalFooterDiv = document.createElement("div");
         modalFooterDiv.className = "modal-footer";
@@ -96,7 +97,7 @@ export class Modal {
         modalFooterDiv.appendChild(this.modalCloseButton2);
 
         modalContentDiv.appendChild(modalHeaderDiv);
-        modalContentDiv.appendChild(modalBodyDiv);
+        modalContentDiv.appendChild(this.modalBodyDiv);
         modalContentDiv.appendChild(modalFooterDiv);
 
         modalDialogDiv.appendChild(modalContentDiv);
