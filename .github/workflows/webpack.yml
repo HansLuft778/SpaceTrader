@@ -30,3 +30,8 @@ jobs:
       run: |
         npm install
         npx webpack
+
+    - name: Deploy to GitHub Pages
+      working-directory: web-ui
+      run: |
+        npx gh-pages -d dist
