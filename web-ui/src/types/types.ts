@@ -1,6 +1,6 @@
-import type { Ship, Shipyard } from "./shipTypes";
+import type { Ship, ShipOwned, Shipyard } from "./shipTypes";
 
-type AllowedDataTypes = Contract[] | Waypoint | Waypoint[] | Account | Shipyard | ShipBought;
+type AllowedDataTypes = Contract[] | Waypoint | Waypoint[] | Account | Shipyard | ShipBought | ShipOwned[];
 
 export interface ApiResponse<T extends AllowedDataTypes> {
     data: T;

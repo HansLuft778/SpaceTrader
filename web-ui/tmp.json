@@ -1,698 +1,545 @@
-{
-    "symbol": "X1-QB20-99657C",
-    "shipTypes": [
-        {
-            "type": "SHIP_PROBE"
+[
+    {
+        "symbol": "GORG-1",
+        "nav": {
+            "systemSymbol": "X1-QB20",
+            "waypointSymbol": "X1-QB20-61050B",
+            "route": {
+                "departure": {
+                    "symbol": "X1-QB20-61050B",
+                    "type": "PLANET",
+                    "systemSymbol": "X1-QB20",
+                    "x": -9,
+                    "y": -20
+                },
+                "destination": {
+                    "symbol": "X1-QB20-61050B",
+                    "type": "PLANET",
+                    "systemSymbol": "X1-QB20",
+                    "x": -9,
+                    "y": -20
+                },
+                "arrival": "2023-08-28T20:01:46.323Z",
+                "departureTime": "2023-08-28T20:01:46.323Z"
+            },
+            "status": "DOCKED",
+            "flightMode": "CRUISE"
         },
-        {
-            "type": "SHIP_LIGHT_HAULER"
+        "crew": {
+            "current": 59,
+            "capacity": 80,
+            "required": 59,
+            "rotation": "STRICT",
+            "morale": 100,
+            "wages": 0
         },
-        {
-            "type": "SHIP_REFINING_FREIGHTER"
+        "fuel": {
+            "current": 1200,
+            "capacity": 1200,
+            "consumed": {
+                "amount": 0,
+                "timestamp": "2023-08-28T20:01:46.323Z"
+            }
         },
-        {
-            "type": "SHIP_MINING_DRONE"
+        "frame": {
+            "symbol": "FRAME_FRIGATE",
+            "name": "Frame Frigate",
+            "description": "A medium-sized, multi-purpose spacecraft, often used for combat, transport, or support operations.",
+            "moduleSlots": 8,
+            "mountingPoints": 5,
+            "fuelCapacity": 1200,
+            "condition": 100,
+            "requirements": {
+                "power": 8,
+                "crew": 25
+            }
         },
-        {
-            "type": "SHIP_ORE_HOUND"
-        }
-    ],
-    "transactions": [
-        {
-            "shipSymbol": "SHIP_MINING_DRONE",
-            "waypointSymbol": "X1-QB20-99657C",
-            "agentSymbol": "BUTTER",
-            "price": 150024,
-            "timestamp": "2023-08-31T21:46:10.679Z"
+        "reactor": {
+            "symbol": "REACTOR_FISSION_I",
+            "name": "Fission Reactor I",
+            "description": "A basic fission power reactor, used to generate electricity from nuclear fission reactions.",
+            "condition": 100,
+            "powerOutput": 31,
+            "requirements": {
+                "crew": 8
+            }
         },
-        {
-            "shipSymbol": "SHIP_MINING_DRONE",
-            "waypointSymbol": "X1-QB20-99657C",
-            "agentSymbol": "BUTTER",
-            "price": 150010,
-            "timestamp": "2023-08-31T21:35:06.137Z"
+        "engine": {
+            "symbol": "ENGINE_ION_DRIVE_II",
+            "name": "Ion Drive II",
+            "description": "An advanced propulsion system that uses ionized particles to generate high-speed, low-thrust acceleration, with improved efficiency and performance.",
+            "condition": 100,
+            "speed": 30,
+            "requirements": {
+                "power": 6,
+                "crew": 8
+            }
         },
-        {
-            "shipSymbol": "SHIP_MINING_DRONE",
-            "waypointSymbol": "X1-QB20-99657C",
-            "agentSymbol": "GH5ORL_NTHVUT5",
-            "price": 149995,
-            "timestamp": "2023-08-31T16:35:44.632Z"
-        },
-        {
-            "shipSymbol": "SHIP_MINING_DRONE",
-            "waypointSymbol": "X1-QB20-99657C",
-            "agentSymbol": "J7PCVH6VN8_1K2",
-            "price": 149980,
-            "timestamp": "2023-08-31T16:35:11.670Z"
-        },
-        {
-            "shipSymbol": "SHIP_MINING_DRONE",
-            "waypointSymbol": "X1-QB20-99657C",
-            "agentSymbol": "7SGD_41UUFMN2U",
-            "price": 149966,
-            "timestamp": "2023-08-31T16:34:23.935Z"
-        },
-        {
-            "shipSymbol": "SHIP_MINING_DRONE",
-            "waypointSymbol": "X1-QB20-99657C",
-            "agentSymbol": "0AIOE00G1___K_",
-            "price": 149951,
-            "timestamp": "2023-08-31T16:33:47.912Z"
-        },
-        {
-            "shipSymbol": "SHIP_MINING_DRONE",
-            "waypointSymbol": "X1-QB20-99657C",
-            "agentSymbol": "YB35MSBQQXBW0X",
-            "price": 149936,
-            "timestamp": "2023-08-31T16:33:24.742Z"
-        },
-        {
-            "shipSymbol": "SHIP_MINING_DRONE",
-            "waypointSymbol": "X1-QB20-99657C",
-            "agentSymbol": "0EAIF0EWQA1DDG",
-            "price": 149921,
-            "timestamp": "2023-08-31T16:32:54.222Z"
-        },
-        {
-            "shipSymbol": "SHIP_MINING_DRONE",
-            "waypointSymbol": "X1-QB20-99657C",
-            "agentSymbol": "ZPETZPAL_ZIUXV",
-            "price": 149907,
-            "timestamp": "2023-08-31T16:32:26.443Z"
-        },
-        {
-            "shipSymbol": "SHIP_MINING_DRONE",
-            "waypointSymbol": "X1-QB20-99657C",
-            "agentSymbol": "HGS8C86COTYKDH",
-            "price": 149892,
-            "timestamp": "2023-08-31T16:31:50.805Z"
-        },
-        {
-            "shipSymbol": "SHIP_MINING_DRONE",
-            "waypointSymbol": "X1-QB20-99657C",
-            "agentSymbol": "Z9_DIN4_M5WGUN",
-            "price": 149877,
-            "timestamp": "2023-08-31T16:31:17.869Z"
-        },
-        {
-            "shipSymbol": "SHIP_MINING_DRONE",
-            "waypointSymbol": "X1-QB20-99657C",
-            "agentSymbol": "UTFDTVW2FK3I5R",
-            "price": 149863,
-            "timestamp": "2023-08-31T16:30:43.324Z"
-        },
-        {
-            "shipSymbol": "SHIP_MINING_DRONE",
-            "waypointSymbol": "X1-QB20-99657C",
-            "agentSymbol": "DE2ZW0J_8E7YLE",
-            "price": 149848,
-            "timestamp": "2023-08-31T16:30:09.654Z"
-        },
-        {
-            "shipSymbol": "SHIP_MINING_DRONE",
-            "waypointSymbol": "X1-QB20-99657C",
-            "agentSymbol": "JH3S3VWIVC33SE",
-            "price": 149833,
-            "timestamp": "2023-08-31T16:29:38.462Z"
-        },
-        {
-            "shipSymbol": "SHIP_MINING_DRONE",
-            "waypointSymbol": "X1-QB20-99657C",
-            "agentSymbol": "DO4DOGMDXZOOHT",
-            "price": 149819,
-            "timestamp": "2023-08-31T16:29:06.606Z"
-        },
-        {
-            "shipSymbol": "SHIP_MINING_DRONE",
-            "waypointSymbol": "X1-QB20-99657C",
-            "agentSymbol": "85A4D3E0S91X3A",
-            "price": 149804,
-            "timestamp": "2023-08-31T16:28:32.536Z"
-        },
-        {
-            "shipSymbol": "SHIP_MINING_DRONE",
-            "waypointSymbol": "X1-QB20-99657C",
-            "agentSymbol": "23U3_0LJ4X15WR",
-            "price": 149789,
-            "timestamp": "2023-08-31T16:27:49.493Z"
-        },
-        {
-            "shipSymbol": "SHIP_MINING_DRONE",
-            "waypointSymbol": "X1-QB20-99657C",
-            "agentSymbol": "YPBAVODREXMAF7",
-            "price": 149775,
-            "timestamp": "2023-08-31T16:27:17.454Z"
-        },
-        {
-            "shipSymbol": "SHIP_MINING_DRONE",
-            "waypointSymbol": "X1-QB20-99657C",
-            "agentSymbol": "YY4MEYR0ZF4X_W",
-            "price": 149760,
-            "timestamp": "2023-08-31T16:26:42.369Z"
-        },
-        {
-            "shipSymbol": "SHIP_MINING_DRONE",
-            "waypointSymbol": "X1-QB20-99657C",
-            "agentSymbol": "6NXF7H0MDDQHZK",
-            "price": 149745,
-            "timestamp": "2023-08-31T16:26:08.737Z"
-        }
-    ],
-    "ships": [
-        {
-            "type": "SHIP_PROBE",
-            "name": "Probe Satellite",
-            "description": "A small, unmanned spacecraft that can be launched into orbit to gather data and perform basic tasks.",
-            "purchasePrice": 69691,
-            "frame": {
-                "symbol": "FRAME_PROBE",
-                "name": "Frame Probe",
-                "description": "A small, unmanned spacecraft used for exploration, reconnaissance, and scientific research.",
-                "moduleSlots": 0,
-                "mountingPoints": 0,
-                "fuelCapacity": 0,
+        "modules": [
+            {
+                "symbol": "MODULE_CARGO_HOLD_I",
+                "name": "Cargo Hold",
+                "description": "A module that increases a ship's cargo capacity.",
+                "capacity": 30,
                 "requirements": {
+                    "crew": 0,
                     "power": 1,
-                    "crew": 0
+                    "slots": 1
                 }
             },
-            "reactor": {
-                "symbol": "REACTOR_SOLAR_I",
-                "name": "Solar Reactor I",
-                "description": "A basic solar power reactor, used to generate electricity from solar energy.",
-                "powerOutput": 3,
+            {
+                "symbol": "MODULE_CARGO_HOLD_I",
+                "name": "Cargo Hold",
+                "description": "A module that increases a ship's cargo capacity.",
+                "capacity": 30,
                 "requirements": {
-                    "crew": 0
-                }
-            },
-            "engine": {
-                "symbol": "ENGINE_IMPULSE_DRIVE_I",
-                "name": "Impulse Drive I",
-                "description": "A basic low-energy propulsion system that generates thrust for interplanetary travel.",
-                "speed": 2,
-                "requirements": {
+                    "crew": 0,
                     "power": 1,
-                    "crew": 0
+                    "slots": 1
                 }
             },
-            "modules": [],
-            "mounts": []
-        },
-        {
-            "type": "SHIP_LIGHT_HAULER",
-            "name": "Light Hauler",
-            "description": "A small, fast cargo ship that is designed for short-range transport of light loads.",
-            "purchasePrice": 346965,
-            "frame": {
-                "symbol": "FRAME_LIGHT_FREIGHTER",
-                "name": "Frame Light Freighter",
-                "description": "A small, versatile spacecraft used for cargo transport and other commercial operations.",
-                "moduleSlots": 6,
-                "mountingPoints": 1,
-                "fuelCapacity": 1700,
+            {
+                "symbol": "MODULE_CREW_QUARTERS_I",
+                "name": "Crew Quarters",
+                "description": "A module that provides living space and amenities for the crew.",
+                "capacity": 40,
                 "requirements": {
-                    "power": 5,
-                    "crew": 40
+                    "crew": 2,
+                    "power": 1,
+                    "slots": 1
                 }
             },
-            "reactor": {
-                "symbol": "REACTOR_CHEMICAL_I",
-                "name": "Chemical Reactor I",
-                "description": "A basic chemical power reactor, used to generate electricity from chemical reactions.",
-                "powerOutput": 15,
+            {
+                "symbol": "MODULE_CREW_QUARTERS_I",
+                "name": "Crew Quarters",
+                "description": "A module that provides living space and amenities for the crew.",
+                "capacity": 40,
                 "requirements": {
-                    "crew": 3
+                    "crew": 2,
+                    "power": 1,
+                    "slots": 1
                 }
             },
-            "engine": {
-                "symbol": "ENGINE_ION_DRIVE_I",
-                "name": "Ion Drive I",
-                "description": "An advanced propulsion system that uses ionized particles to generate high-speed, low-thrust acceleration.",
-                "speed": 10,
+            {
+                "symbol": "MODULE_MINERAL_PROCESSOR_I",
+                "name": "Mineral Processor",
+                "description": "Crushes and processes extracted minerals and ores into their component parts, filters out impurities, and containerizes them into raw storage units.",
                 "requirements": {
+                    "crew": 0,
+                    "power": 1,
+                    "slots": 2
+                }
+            },
+            {
+                "symbol": "MODULE_JUMP_DRIVE_I",
+                "name": "Jump Drive I",
+                "description": "A basic antimatter jump drive that allows for instantaneous short-range interdimensional travel.",
+                "range": 500,
+                "requirements": {
+                    "crew": 10,
+                    "power": 4,
+                    "slots": 1
+                }
+            },
+            {
+                "symbol": "MODULE_WARP_DRIVE_I",
+                "name": "Warp Drive I",
+                "description": "A basic warp drive that allows for short-range interstellar travel.",
+                "range": 2000,
+                "requirements": {
+                    "crew": 2,
                     "power": 3,
-                    "crew": 3
+                    "slots": 1
+                }
+            }
+        ],
+        "mounts": [
+            {
+                "symbol": "MOUNT_SENSOR_ARRAY_I",
+                "name": "Sensor Array I",
+                "description": "A basic sensor array that improves a ship's ability to detect and track other objects in space.",
+                "strength": 1,
+                "requirements": {
+                    "crew": 0,
+                    "power": 1
                 }
             },
-            "modules": [
-                {
-                    "symbol": "MODULE_CARGO_HOLD_I",
-                    "name": "Cargo Hold",
-                    "description": "A module that increases a ship's cargo capacity.",
-                    "capacity": 30,
-                    "requirements": {
-                        "crew": 0,
-                        "power": 1,
-                        "slots": 1
-                    }
-                },
-                {
-                    "symbol": "MODULE_CARGO_HOLD_I",
-                    "name": "Cargo Hold",
-                    "description": "A module that increases a ship's cargo capacity.",
-                    "capacity": 30,
-                    "requirements": {
-                        "crew": 0,
-                        "power": 1,
-                        "slots": 1
-                    }
-                },
-                {
-                    "symbol": "MODULE_CARGO_HOLD_I",
-                    "name": "Cargo Hold",
-                    "description": "A module that increases a ship's cargo capacity.",
-                    "capacity": 30,
-                    "requirements": {
-                        "crew": 0,
-                        "power": 1,
-                        "slots": 1
-                    }
-                },
-                {
-                    "symbol": "MODULE_CARGO_HOLD_I",
-                    "name": "Cargo Hold",
-                    "description": "A module that increases a ship's cargo capacity.",
-                    "capacity": 30,
-                    "requirements": {
-                        "crew": 0,
-                        "power": 1,
-                        "slots": 1
-                    }
-                },
-                {
-                    "symbol": "MODULE_CREW_QUARTERS_I",
-                    "name": "Crew Quarters",
-                    "description": "A module that provides living space and amenities for the crew.",
-                    "capacity": 40,
-                    "requirements": {
-                        "crew": 2,
-                        "power": 1,
-                        "slots": 1
-                    }
-                },
-                {
-                    "symbol": "MODULE_CREW_QUARTERS_I",
-                    "name": "Crew Quarters",
-                    "description": "A module that provides living space and amenities for the crew.",
-                    "capacity": 40,
-                    "requirements": {
-                        "crew": 2,
-                        "power": 1,
-                        "slots": 1
-                    }
+            {
+                "symbol": "MOUNT_MINING_LASER_I",
+                "name": "Mining Laser I",
+                "description": "A basic mining laser that can be used to extract valuable minerals from asteroids and other space objects.",
+                "strength": 10,
+                "requirements": {
+                    "crew": 0,
+                    "power": 1
                 }
-            ],
-            "mounts": [
-                {
-                    "symbol": "MOUNT_SURVEYOR_I",
-                    "name": "Surveyor I",
-                    "description": "A basic survey probe that can be used to gather information about a mineral deposit.",
-                    "strength": 1,
-                    "deposits": [
-                        "QUARTZ_SAND",
-                        "SILICON_CRYSTALS",
-                        "PRECIOUS_STONES",
-                        "ICE_WATER",
-                        "AMMONIA_ICE",
-                        "IRON_ORE",
-                        "COPPER_ORE",
-                        "SILVER_ORE",
-                        "ALUMINUM_ORE",
-                        "GOLD_ORE",
-                        "PLATINUM_ORE"
-                    ],
-                    "requirements": {
-                        "crew": 2,
-                        "power": 1
-                    }
+            },
+            {
+                "symbol": "MOUNT_SURVEYOR_I",
+                "name": "Surveyor I",
+                "description": "A basic survey probe that can be used to gather information about a mineral deposit.",
+                "strength": 1,
+                "deposits": [
+                    "QUARTZ_SAND",
+                    "SILICON_CRYSTALS",
+                    "PRECIOUS_STONES",
+                    "ICE_WATER",
+                    "AMMONIA_ICE",
+                    "IRON_ORE",
+                    "COPPER_ORE",
+                    "SILVER_ORE",
+                    "ALUMINUM_ORE",
+                    "GOLD_ORE",
+                    "PLATINUM_ORE"
+                ],
+                "requirements": {
+                    "crew": 2,
+                    "power": 1
                 }
-            ]
+            }
+        ],
+        "registration": {
+            "name": "GORG-1",
+            "factionSymbol": "COSMIC",
+            "role": "COMMAND"
         },
-        {
-            "type": "SHIP_REFINING_FREIGHTER",
-            "name": "Refining Freighter",
-            "description": "A large cargo ship designed specifically for refining raw materials. Equipped with a powerful reactor and space for large modules, the refining freighter is a versatile and convenient tool for industrial operations in remote or difficult-to-reach locations.",
-            "purchasePrice": 1987514,
-            "frame": {
-                "symbol": "FRAME_HEAVY_FREIGHTER",
-                "name": "Frame Heavy Freighter",
-                "description": "A large, heavily-armed spacecraft used for cargo transport and other commercial operations in hostile environments.",
-                "moduleSlots": 12,
-                "mountingPoints": 3,
-                "fuelCapacity": 2300,
-                "requirements": {
-                    "power": 10,
-                    "crew": 100
-                }
-            },
-            "reactor": {
-                "symbol": "REACTOR_FUSION_I",
-                "name": "Fusion Reactor I",
-                "description": "A basic fusion power reactor, used to generate electricity from nuclear fusion reactions.",
-                "powerOutput": 40,
-                "requirements": {
-                    "crew": 12
-                }
-            },
-            "engine": {
-                "symbol": "ENGINE_ION_DRIVE_II",
-                "name": "Ion Drive II",
-                "description": "An advanced propulsion system that uses ionized particles to generate high-speed, low-thrust acceleration, with improved efficiency and performance.",
-                "speed": 30,
-                "requirements": {
-                    "power": 6,
-                    "crew": 8
-                }
-            },
-            "modules": [
-                {
-                    "symbol": "MODULE_CARGO_HOLD_I",
-                    "name": "Cargo Hold",
-                    "description": "A module that increases a ship's cargo capacity.",
-                    "capacity": 30,
-                    "requirements": {
-                        "crew": 0,
-                        "power": 1,
-                        "slots": 1
-                    }
-                },
-                {
-                    "symbol": "MODULE_CARGO_HOLD_I",
-                    "name": "Cargo Hold",
-                    "description": "A module that increases a ship's cargo capacity.",
-                    "capacity": 30,
-                    "requirements": {
-                        "crew": 0,
-                        "power": 1,
-                        "slots": 1
-                    }
-                },
-                {
-                    "symbol": "MODULE_CARGO_HOLD_I",
-                    "name": "Cargo Hold",
-                    "description": "A module that increases a ship's cargo capacity.",
-                    "capacity": 30,
-                    "requirements": {
-                        "crew": 0,
-                        "power": 1,
-                        "slots": 1
-                    }
-                },
-                {
-                    "symbol": "MODULE_CARGO_HOLD_I",
-                    "name": "Cargo Hold",
-                    "description": "A module that increases a ship's cargo capacity.",
-                    "capacity": 30,
-                    "requirements": {
-                        "crew": 0,
-                        "power": 1,
-                        "slots": 1
-                    }
-                },
-                {
-                    "symbol": "MODULE_CREW_QUARTERS_I",
-                    "name": "Crew Quarters",
-                    "description": "A module that provides living space and amenities for the crew.",
-                    "capacity": 40,
-                    "requirements": {
-                        "crew": 2,
-                        "power": 1,
-                        "slots": 1
-                    }
-                },
-                {
-                    "symbol": "MODULE_CREW_QUARTERS_I",
-                    "name": "Crew Quarters",
-                    "description": "A module that provides living space and amenities for the crew.",
-                    "capacity": 40,
-                    "requirements": {
-                        "crew": 2,
-                        "power": 1,
-                        "slots": 1
-                    }
-                },
-                {
-                    "symbol": "MODULE_CREW_QUARTERS_I",
-                    "name": "Crew Quarters",
-                    "description": "A module that provides living space and amenities for the crew.",
-                    "capacity": 40,
-                    "requirements": {
-                        "crew": 2,
-                        "power": 1,
-                        "slots": 1
-                    }
-                },
-                {
-                    "symbol": "MODULE_CREW_QUARTERS_I",
-                    "name": "Crew Quarters",
-                    "description": "A module that provides living space and amenities for the crew.",
-                    "capacity": 40,
-                    "requirements": {
-                        "crew": 2,
-                        "power": 1,
-                        "slots": 1
-                    }
-                },
-                {
-                    "symbol": "MODULE_ORE_REFINERY_I",
-                    "name": "Ore Refinery",
-                    "description": "A specialized module that can refine raw ores into usable metals and other materials.",
-                    "production": [
-                        "IRON",
-                        "COPPER",
-                        "SILVER",
-                        "GOLD",
-                        "ALUMINUM",
-                        "PLATINUM",
-                        "URANITE",
-                        "MERITIUM"
-                    ],
-                    "requirements": {
-                        "crew": 20,
-                        "power": 12,
-                        "slots": 4
-                    }
-                }
-            ],
-            "mounts": [
-                {
-                    "symbol": "MOUNT_TURRET_I",
-                    "name": "Rotary Cannon",
-                    "description": "A rotary cannon is a type of mounted turret that is designed to fire a high volume of rounds in rapid succession.",
-                    "requirements": {
-                        "power": 1,
-                        "crew": 1
-                    }
-                },
-                {
-                    "symbol": "MOUNT_TURRET_I",
-                    "name": "Rotary Cannon",
-                    "description": "A rotary cannon is a type of mounted turret that is designed to fire a high volume of rounds in rapid succession.",
-                    "requirements": {
-                        "power": 1,
-                        "crew": 1
-                    }
-                },
-                {
-                    "symbol": "MOUNT_MISSILE_LAUNCHER_I",
-                    "name": "Missile Launcher",
-                    "description": "A basic missile launcher that fires guided missiles with a variety of warheads for different targets.",
-                    "requirements": {
-                        "power": 1,
-                        "crew": 2
-                    }
-                }
-            ]
-        },
-        {
-            "type": "SHIP_MINING_DRONE",
-            "name": "Mining Drone",
-            "description": "A small, unmanned spacecraft that can be used for mining operations, such as extracting valuable minerals from asteroids.",
-            "purchasePrice": 150039,
-            "frame": {
-                "symbol": "FRAME_DRONE",
-                "name": "Frame Drone",
-                "description": "A small, unmanned spacecraft used for various tasks, such as surveillance, transportation, or combat.",
-                "moduleSlots": 3,
-                "mountingPoints": 2,
-                "fuelCapacity": 100,
-                "requirements": {
-                    "power": 1,
-                    "crew": -3
-                }
-            },
-            "reactor": {
-                "symbol": "REACTOR_CHEMICAL_I",
-                "name": "Chemical Reactor I",
-                "description": "A basic chemical power reactor, used to generate electricity from chemical reactions.",
-                "powerOutput": 15,
-                "requirements": {
-                    "crew": 3
-                }
-            },
-            "engine": {
-                "symbol": "ENGINE_IMPULSE_DRIVE_I",
-                "name": "Impulse Drive I",
-                "description": "A basic low-energy propulsion system that generates thrust for interplanetary travel.",
-                "speed": 2,
-                "requirements": {
-                    "power": 1,
-                    "crew": 0
-                }
-            },
-            "modules": [
-                {
-                    "symbol": "MODULE_CARGO_HOLD_I",
-                    "name": "Cargo Hold",
-                    "description": "A module that increases a ship's cargo capacity.",
-                    "capacity": 30,
-                    "requirements": {
-                        "crew": 0,
-                        "power": 1,
-                        "slots": 1
-                    }
-                },
-                {
-                    "symbol": "MODULE_MINERAL_PROCESSOR_I",
-                    "name": "Mineral Processor",
-                    "description": "Crushes and processes extracted minerals and ores into their component parts, filters out impurities, and containerizes them into raw storage units.",
-                    "requirements": {
-                        "crew": 0,
-                        "power": 1,
-                        "slots": 2
-                    }
-                }
-            ],
-            "mounts": [
-                {
-                    "symbol": "MOUNT_MINING_LASER_I",
-                    "name": "Mining Laser I",
-                    "description": "A basic mining laser that can be used to extract valuable minerals from asteroids and other space objects.",
-                    "strength": 10,
-                    "requirements": {
-                        "crew": 0,
-                        "power": 1
-                    }
-                }
-            ]
-        },
-        {
-            "type": "SHIP_ORE_HOUND",
-            "name": "Ore Hound",
-            "description": "The Ore Hound is a specialized mining ship designed for extracting valuable ores and minerals from asteroids and other celestial bodies. With its advanced mining lasers and reinforced hull, the Ore Hound is capable of excavating large amounts of ore and minerals from even the toughest asteroids. It is equipped with a range of modules and mounts for handling a variety of mining and defensive needs, and is an essential vessel for miners and traders looking to profit from the rich resources of the galaxy.",
-            "purchasePrice": 565730,
-            "frame": {
-                "symbol": "FRAME_MINER",
-                "name": "Frame Miner",
-                "description": "A medium-sized spacecraft designed for mining operations and resource extraction.",
-                "moduleSlots": 5,
-                "mountingPoints": 3,
-                "fuelCapacity": 900,
-                "requirements": {
-                    "power": 5,
-                    "crew": 15
-                }
-            },
-            "reactor": {
-                "symbol": "REACTOR_FISSION_I",
-                "name": "Fission Reactor I",
-                "description": "A basic fission power reactor, used to generate electricity from nuclear fission reactions.",
-                "powerOutput": 31,
-                "requirements": {
-                    "crew": 8
-                }
-            },
-            "engine": {
-                "symbol": "ENGINE_ION_DRIVE_I",
-                "name": "Ion Drive I",
-                "description": "An advanced propulsion system that uses ionized particles to generate high-speed, low-thrust acceleration.",
-                "speed": 10,
-                "requirements": {
-                    "power": 3,
-                    "crew": 3
-                }
-            },
-            "modules": [
-                {
-                    "symbol": "MODULE_CARGO_HOLD_I",
-                    "name": "Cargo Hold",
-                    "description": "A module that increases a ship's cargo capacity.",
-                    "capacity": 30,
-                    "requirements": {
-                        "crew": 0,
-                        "power": 1,
-                        "slots": 1
-                    }
-                },
-                {
-                    "symbol": "MODULE_CARGO_HOLD_I",
-                    "name": "Cargo Hold",
-                    "description": "A module that increases a ship's cargo capacity.",
-                    "capacity": 30,
-                    "requirements": {
-                        "crew": 0,
-                        "power": 1,
-                        "slots": 1
-                    }
-                },
-                {
-                    "symbol": "MODULE_MINERAL_PROCESSOR_I",
-                    "name": "Mineral Processor",
-                    "description": "Crushes and processes extracted minerals and ores into their component parts, filters out impurities, and containerizes them into raw storage units.",
-                    "requirements": {
-                        "crew": 0,
-                        "power": 1,
-                        "slots": 2
-                    }
-                },
-                {
-                    "symbol": "MODULE_CREW_QUARTERS_I",
-                    "name": "Crew Quarters",
-                    "description": "A module that provides living space and amenities for the crew.",
-                    "capacity": 40,
-                    "requirements": {
-                        "crew": 2,
-                        "power": 1,
-                        "slots": 1
-                    }
-                }
-            ],
-            "mounts": [
-                {
-                    "symbol": "MOUNT_MINING_LASER_II",
-                    "name": "Mining Laser II",
-                    "description": "An advanced mining laser that is more efficient and effective at extracting valuable minerals from asteroids and other space objects.",
-                    "strength": 25,
-                    "requirements": {
-                        "crew": 2,
-                        "power": 2
-                    }
-                },
-                {
-                    "symbol": "MOUNT_SURVEYOR_I",
-                    "name": "Surveyor I",
-                    "description": "A basic survey probe that can be used to gather information about a mineral deposit.",
-                    "strength": 1,
-                    "deposits": [
-                        "QUARTZ_SAND",
-                        "SILICON_CRYSTALS",
-                        "PRECIOUS_STONES",
-                        "ICE_WATER",
-                        "AMMONIA_ICE",
-                        "IRON_ORE",
-                        "COPPER_ORE",
-                        "SILVER_ORE",
-                        "ALUMINUM_ORE",
-                        "GOLD_ORE",
-                        "PLATINUM_ORE"
-                    ],
-                    "requirements": {
-                        "crew": 2,
-                        "power": 1
-                    }
-                }
-            ]
+        "cargo": {
+            "capacity": 60,
+            "units": 0,
+            "inventory": []
         }
-    ]
-}
+    },
+    {
+        "symbol": "GORG-2",
+        "nav": {
+            "systemSymbol": "X1-QB20",
+            "waypointSymbol": "X1-QB20-99657C",
+            "route": {
+                "departure": {
+                    "symbol": "X1-QB20-99657C",
+                    "type": "ORBITAL_STATION",
+                    "systemSymbol": "X1-QB20",
+                    "x": -23,
+                    "y": -53
+                },
+                "destination": {
+                    "symbol": "X1-QB20-99657C",
+                    "type": "ORBITAL_STATION",
+                    "systemSymbol": "X1-QB20",
+                    "x": -23,
+                    "y": -53
+                },
+                "arrival": "2023-08-28T20:01:46.407Z",
+                "departureTime": "2023-08-28T20:01:46.407Z"
+            },
+            "status": "DOCKED",
+            "flightMode": "CRUISE"
+        },
+        "crew": {
+            "current": 0,
+            "capacity": 0,
+            "required": 0,
+            "rotation": "STRICT",
+            "morale": 100,
+            "wages": 0
+        },
+        "fuel": {
+            "current": 0,
+            "capacity": 0,
+            "consumed": {
+                "amount": 0,
+                "timestamp": "2023-08-28T20:01:46.407Z"
+            }
+        },
+        "frame": {
+            "symbol": "FRAME_PROBE",
+            "name": "Frame Probe",
+            "description": "A small, unmanned spacecraft used for exploration, reconnaissance, and scientific research.",
+            "moduleSlots": 0,
+            "mountingPoints": 0,
+            "fuelCapacity": 0,
+            "condition": 100,
+            "requirements": {
+                "power": 1,
+                "crew": 0
+            }
+        },
+        "reactor": {
+            "symbol": "REACTOR_SOLAR_I",
+            "name": "Solar Reactor I",
+            "description": "A basic solar power reactor, used to generate electricity from solar energy.",
+            "condition": 100,
+            "powerOutput": 3,
+            "requirements": {
+                "crew": 0
+            }
+        },
+        "engine": {
+            "symbol": "ENGINE_IMPULSE_DRIVE_I",
+            "name": "Impulse Drive I",
+            "description": "A basic low-energy propulsion system that generates thrust for interplanetary travel.",
+            "condition": 100,
+            "speed": 2,
+            "requirements": {
+                "power": 1,
+                "crew": 0
+            }
+        },
+        "modules": [],
+        "mounts": [],
+        "registration": {
+            "name": "GORG-2",
+            "factionSymbol": "COSMIC",
+            "role": "SATELLITE"
+        },
+        "cargo": {
+            "capacity": 0,
+            "units": 0,
+            "inventory": []
+        }
+    },
+    {
+        "symbol": "GORG-3",
+        "nav": {
+            "systemSymbol": "X1-QB20",
+            "waypointSymbol": "X1-QB20-99657C",
+            "route": {
+                "departure": {
+                    "symbol": "X1-QB20-99657C",
+                    "type": "ORBITAL_STATION",
+                    "systemSymbol": "X1-QB20",
+                    "x": -23,
+                    "y": -53
+                },
+                "destination": {
+                    "symbol": "X1-QB20-99657C",
+                    "type": "ORBITAL_STATION",
+                    "systemSymbol": "X1-QB20",
+                    "x": -23,
+                    "y": -53
+                },
+                "arrival": "2023-09-01T23:32:50.545Z",
+                "departureTime": "2023-09-01T23:32:50.545Z"
+            },
+            "status": "DOCKED",
+            "flightMode": "CRUISE"
+        },
+        "crew": {
+            "current": 0,
+            "capacity": 0,
+            "required": 0,
+            "rotation": "STRICT",
+            "morale": 100,
+            "wages": 0
+        },
+        "fuel": {
+            "current": 100,
+            "capacity": 100,
+            "consumed": {
+                "amount": 0,
+                "timestamp": "2023-09-01T23:32:50.545Z"
+            }
+        },
+        "frame": {
+            "symbol": "FRAME_DRONE",
+            "name": "Frame Drone",
+            "description": "A small, unmanned spacecraft used for various tasks, such as surveillance, transportation, or combat.",
+            "moduleSlots": 3,
+            "mountingPoints": 2,
+            "fuelCapacity": 100,
+            "condition": 100,
+            "requirements": {
+                "power": 1,
+                "crew": -3
+            }
+        },
+        "reactor": {
+            "symbol": "REACTOR_CHEMICAL_I",
+            "name": "Chemical Reactor I",
+            "description": "A basic chemical power reactor, used to generate electricity from chemical reactions.",
+            "condition": 100,
+            "powerOutput": 15,
+            "requirements": {
+                "crew": 3
+            }
+        },
+        "engine": {
+            "symbol": "ENGINE_IMPULSE_DRIVE_I",
+            "name": "Impulse Drive I",
+            "description": "A basic low-energy propulsion system that generates thrust for interplanetary travel.",
+            "condition": 100,
+            "speed": 2,
+            "requirements": {
+                "power": 1,
+                "crew": 0
+            }
+        },
+        "modules": [
+            {
+                "symbol": "MODULE_CARGO_HOLD_I",
+                "name": "Cargo Hold",
+                "description": "A module that increases a ship's cargo capacity.",
+                "capacity": 30,
+                "requirements": {
+                    "crew": 0,
+                    "power": 1,
+                    "slots": 1
+                }
+            },
+            {
+                "symbol": "MODULE_MINERAL_PROCESSOR_I",
+                "name": "Mineral Processor",
+                "description": "Crushes and processes extracted minerals and ores into their component parts, filters out impurities, and containerizes them into raw storage units.",
+                "requirements": {
+                    "crew": 0,
+                    "power": 1,
+                    "slots": 2
+                }
+            }
+        ],
+        "mounts": [
+            {
+                "symbol": "MOUNT_MINING_LASER_I",
+                "name": "Mining Laser I",
+                "description": "A basic mining laser that can be used to extract valuable minerals from asteroids and other space objects.",
+                "strength": 10,
+                "requirements": {
+                    "crew": 0,
+                    "power": 1
+                }
+            }
+        ],
+        "registration": {
+            "name": "GORG-3",
+            "factionSymbol": "COSMIC",
+            "role": "EXCAVATOR"
+        },
+        "cargo": {
+            "capacity": 30,
+            "units": 0,
+            "inventory": []
+        }
+    },
+    {
+        "symbol": "GORG-4",
+        "nav": {
+            "systemSymbol": "X1-QB20",
+            "waypointSymbol": "X1-QB20-99657C",
+            "route": {
+                "departure": {
+                    "symbol": "X1-QB20-99657C",
+                    "type": "ORBITAL_STATION",
+                    "systemSymbol": "X1-QB20",
+                    "x": -23,
+                    "y": -53
+                },
+                "destination": {
+                    "symbol": "X1-QB20-99657C",
+                    "type": "ORBITAL_STATION",
+                    "systemSymbol": "X1-QB20",
+                    "x": -23,
+                    "y": -53
+                },
+                "arrival": "2023-09-01T23:34:29.765Z",
+                "departureTime": "2023-09-01T23:34:29.765Z"
+            },
+            "status": "DOCKED",
+            "flightMode": "CRUISE"
+        },
+        "crew": {
+            "current": 0,
+            "capacity": 0,
+            "required": 0,
+            "rotation": "STRICT",
+            "morale": 100,
+            "wages": 0
+        },
+        "fuel": {
+            "current": 100,
+            "capacity": 100,
+            "consumed": {
+                "amount": 0,
+                "timestamp": "2023-09-01T23:34:29.765Z"
+            }
+        },
+        "frame": {
+            "symbol": "FRAME_DRONE",
+            "name": "Frame Drone",
+            "description": "A small, unmanned spacecraft used for various tasks, such as surveillance, transportation, or combat.",
+            "moduleSlots": 3,
+            "mountingPoints": 2,
+            "fuelCapacity": 100,
+            "condition": 100,
+            "requirements": {
+                "power": 1,
+                "crew": -3
+            }
+        },
+        "reactor": {
+            "symbol": "REACTOR_CHEMICAL_I",
+            "name": "Chemical Reactor I",
+            "description": "A basic chemical power reactor, used to generate electricity from chemical reactions.",
+            "condition": 100,
+            "powerOutput": 15,
+            "requirements": {
+                "crew": 3
+            }
+        },
+        "engine": {
+            "symbol": "ENGINE_IMPULSE_DRIVE_I",
+            "name": "Impulse Drive I",
+            "description": "A basic low-energy propulsion system that generates thrust for interplanetary travel.",
+            "condition": 100,
+            "speed": 2,
+            "requirements": {
+                "power": 1,
+                "crew": 0
+            }
+        },
+        "modules": [
+            {
+                "symbol": "MODULE_CARGO_HOLD_I",
+                "name": "Cargo Hold",
+                "description": "A module that increases a ship's cargo capacity.",
+                "capacity": 30,
+                "requirements": {
+                    "crew": 0,
+                    "power": 1,
+                    "slots": 1
+                }
+            },
+            {
+                "symbol": "MODULE_MINERAL_PROCESSOR_I",
+                "name": "Mineral Processor",
+                "description": "Crushes and processes extracted minerals and ores into their component parts, filters out impurities, and containerizes them into raw storage units.",
+                "requirements": {
+                    "crew": 0,
+                    "power": 1,
+                    "slots": 2
+                }
+            }
+        ],
+        "mounts": [
+            {
+                "symbol": "MOUNT_MINING_LASER_I",
+                "name": "Mining Laser I",
+                "description": "A basic mining laser that can be used to extract valuable minerals from asteroids and other space objects.",
+                "strength": 10,
+                "requirements": {
+                    "crew": 0,
+                    "power": 1
+                }
+            }
+        ],
+        "registration": {
+            "name": "GORG-4",
+            "factionSymbol": "COSMIC",
+            "role": "EXCAVATOR"
+        },
+        "cargo": {
+            "capacity": 30,
+            "units": 0,
+            "inventory": []
+        }
+    }
+]

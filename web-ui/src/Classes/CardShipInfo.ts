@@ -39,42 +39,7 @@ export class ShipInfoCard extends Card {
         buyButton.setAttribute("type", "button");
         buyButton.innerHTML = "Buy";
         buyButton.addEventListener("click", () => {
-            console.log("buying ship with id: " + this.id);
-            Swal.fire({
-                title: 'Are you sure you want to buy this ship for ' + this.shipData.purchasePrice.toLocaleString() + '?',
-                text: "You won't be able to revert this!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, buy it for ' + this.shipData.purchasePrice.toLocaleString() + '!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    buyShipFromYard(this.shipData.type, this.waypointSymbol).then((result) => {
-                        console.log(result);
-                        console.log(result.error);
-                        if (result.error !== undefined) {
-                            Swal.fire(
-                                'Purchase Failed!',
-                                result.error.message,
-                                'error'
-                            )
-                        }
-                        Swal.fire(
-                            'Purchase Successful!',
-                            'You have successfully purchased the ' + this.shipData.name + '!',
-                            'success'
-                        )
-                    }).catch((error: Error) => {
-                        console.log(error);
-                        Swal.fire(
-                            'Purchase Failed due to an error while sending the request!',
-                            error.message,
-                            'error'
-                        )
-                    });
-                }
-            })
+            this.buyShip();
         });
 
         buttonsDiv.appendChild(cardButton);
@@ -83,5 +48,43 @@ export class ShipInfoCard extends Card {
         cardFooter.appendChild(buttonsDiv);
 
         this.cardDiv.appendChild(cardFooter);
+    }
+
+    private buyShip() {
+        console.log("buying ship with id: " + this.id);
+        Swal.fire({
+            title: 'Are you sure you want to buy this ship for ' + this.shipData.purchasePrice.toLocaleString() + '?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, buy it for ' + this.shipData.purchasePrice.toLocaleString() + '!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                buyShipFromYard(this.shipData.type, this.waypointSymbol).then((result) => {
+                    if (result.error) {
+                        Swal.fire(
+                            'Purchase Failed!',
+                            result.error.message,
+                            'error'
+                        );
+                    } else {
+                        Swal.fire(
+                            'Purchase Successful!',
+                            'You have successfully purchased the ' + this.shipData.name + '!',
+                            'success'
+                        );
+                    }
+                }).catch((error: Error) => {
+                    console.log(error);
+                    Swal.fire(
+                        'Purchase Failed due to an error while sending the request!',
+                        error.message,
+                        'error'
+                    );
+                });
+            }
+        });
     }
 }

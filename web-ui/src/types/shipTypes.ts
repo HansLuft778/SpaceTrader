@@ -28,11 +28,15 @@ export interface Ship {
     engine: Engine;
     modules: Module[];
     mounts: Mount[];
+}
 
+export interface ShipOwned extends Ship {
     symbol?: string;
     nav?: Nav;
     ceww?: Crew;
     fuel?: Fuel;
+    registration?: Registration;
+    cargo?: Cargo;
 }
 
 export interface Frame {
@@ -156,4 +160,19 @@ export interface Fuel {
 export interface Consumption {
     amount: number;
     timestamp: string;
+}
+
+export interface Registration {
+    name: string;
+    factionSymbol: string;
+    role: string;
+}
+
+export interface Cargo {
+    capacity: number;
+    units: number;
+    inventory: Inventory[];
+}
+
+export interface Inventory {
 }
