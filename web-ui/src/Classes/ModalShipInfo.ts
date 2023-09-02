@@ -23,7 +23,6 @@ export class ShipInfoModal extends Modal {
     remapCloseButton() {
         // const closeButton = document.getElementById(this.id + "CloseButton") as HTMLButtonElement;
         const closeButton = this.closeButton2;
-        console.log(this.id + "CloseButton is: " + closeButton);
         
         closeButton.removeAttribute("data-bs-dismiss");
         closeButton.className = "btn btn-secondary";

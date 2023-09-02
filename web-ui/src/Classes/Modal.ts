@@ -84,7 +84,7 @@ export class Modal {
 
         const modalFooterDiv = document.createElement("div");
         modalFooterDiv.className = "modal-footer";
-        console.log(this.id + "CloseButton");
+        // console.log(this.id + "CloseButton");
         
         // this.modalCloseButton2 = document.createElement("button");
         this.modalCloseButton2.id = this.id + "CloseButton";

@@ -1,6 +1,6 @@
 import type { Ship, Shipyard } from "./shipTypes";
 
-type AllowedDataTypes = Contract[] | Waypoint | Waypoint[] | Account | Shipyard;
+type AllowedDataTypes = Contract[] | Waypoint | Waypoint[] | Account | Shipyard | ShipBought;
 
 export interface ApiResponse<T extends AllowedDataTypes> {
     data: T;
@@ -11,6 +11,12 @@ export interface ApiResponse<T extends AllowedDataTypes> {
 export interface Error {
     code: number;
     message: string;
+    data?: ErrorData;
+}
+
+export interface ErrorData {
+    creditsAvailable: number;
+    creditsNeeded: number;
 }
 
 export interface Account {

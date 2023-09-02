@@ -52,7 +52,8 @@ export class ShipInfoCard extends Card {
                 if (result.isConfirmed) {
                     buyShipFromYard(this.shipData.type, this.waypointSymbol).then((result) => {
                         console.log(result);
-                        if (result.error) {
+                        console.log(result.error);
+                        if (result.error !== undefined) {
                             Swal.fire(
                                 'Purchase Failed!',
                                 result.error.message,
@@ -65,9 +66,9 @@ export class ShipInfoCard extends Card {
                             'success'
                         )
                     }).catch((error: Error) => {
-                        // console.log(error);
+                        console.log(error);
                         Swal.fire(
-                            'Purchase Failed!',
+                            'Purchase Failed due to an error while sending the request!',
                             error.message,
                             'error'
                         )

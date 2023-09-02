@@ -1,6 +1,6 @@
 import { ShipyardModal } from "./Classes/ModalShipyard";
 import type { Shipyard } from "./types/shipTypes";
-import type { ApiResponse } from './types/types';
+import type { ApiResponse, ShipBought } from './types/types';
 
 export async function getShipyardInfo(waypointSymbol: string) {
     const options = {
@@ -19,6 +19,10 @@ export async function getShipyardInfo(waypointSymbol: string) {
 }
 
 export async function buyShipFromYard(shipType: string, waypointSymbol: string) {
+
+    console.log("called: buyShipFromYard");
+    
+
     const options = {
         method: 'POST',
         headers: {
@@ -31,7 +35,7 @@ export async function buyShipFromYard(shipType: string, waypointSymbol: string) 
         }),
     };
 
-    const result = await fetch('https://api.spacetraders.io/v2/my/ships', options)
+    const result: ApiResponse<ShipBought> = await fetch('https://api.spacetraders.io/v2/my/ships', options)
         .then(response => response.json());
 
     console.log(result);

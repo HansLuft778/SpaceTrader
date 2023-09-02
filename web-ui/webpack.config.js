@@ -5,6 +5,7 @@ module.exports = {
         index: './src/index.ts',
         contract: './src/Contracts.ts',
         waypoint: './src/Waypoint.ts',
+        fleet: './src/Fleet.ts',
     },
     devtool: 'source-map',
     output: {
