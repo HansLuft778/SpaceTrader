@@ -4,3 +4,7 @@ token.txt
 /Model/__pycache__/
 .DS_Store
 /.vscode
+
+web-ui/.vscode/launch.json
+web-ui/dist/*
+
