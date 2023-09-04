@@ -41,7 +41,9 @@ export class Card {
         cardText.innerHTML = this.description;
 
         this.cardBody.appendChild(cardTitle);
-        this.cardBody.appendChild(cardText);
+        if (this.description != "") {
+            this.cardBody.appendChild(cardText);
+        }
 
         this.cardButton = document.createElement("button");
         this.cardButton.className = "btn btn-primary";
@@ -114,6 +116,10 @@ export class Card {
         cardImg.src = imageSrc;
 
         this.cardDiv.insertBefore(cardImg, this.cardDiv.firstChild);
+    }
+
+    addElementToCard(element: HTMLElement) {
+        this.cardBody.appendChild(element);
     }
 
     public get getCardDiv(): HTMLDivElement {

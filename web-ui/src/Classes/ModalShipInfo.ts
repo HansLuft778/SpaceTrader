@@ -1,6 +1,7 @@
 import { Ship } from "../types/shipTypes";
 import { Card } from "./Card";
 import { CardGroup } from "./CardGroup";
+import { ListCard } from "./ListCard";
 import { Modal } from "./Modal";
 
 export class ShipInfoModal extends Modal {
@@ -24,10 +25,7 @@ export class ShipInfoModal extends Modal {
     }
 
     private renderBody() {
-
         this.genrateGrid();
-
-
     }
 
     remapCloseButton() {
@@ -68,24 +66,24 @@ export class ShipInfoModal extends Modal {
         const rowDiv = document.createElement("div");
         rowDiv.className = "row";
 
-        const colDiv = document.createElement("div");
-        colDiv.className = "col";
+        const colRow1_1 = document.createElement("div");
+        colRow1_1.className = "col";
         if (this.requirements.crew > 0) {
-            colDiv.innerHTML = "Crew Needed: " + this.requirements.crew;
+            colRow1_1.innerHTML = "Crew Needed: " + this.requirements.crew;
         } else {
-            colDiv.innerHTML = "Crew Needed: nil";
+            colRow1_1.innerHTML = "Crew Needed: nil";
         }
 
-        const colDiv2 = document.createElement("div");
-        colDiv2.className = "col";
+        const colRow1_2 = document.createElement("div");
+        colRow1_2.className = "col";
         if (this.requirements.power > 0) {
-            colDiv2.innerHTML = "Power Needed: " + this.requirements.power;
+            colRow1_2.innerHTML = "Power Needed: " + this.requirements.power;
         } else {
-            colDiv2.innerHTML = "Power Needed: nil";
+            colRow1_2.innerHTML = "Power Needed: nil";
         }
 
-        rowDiv.appendChild(colDiv);
-        rowDiv.appendChild(colDiv2);
+        rowDiv.appendChild(colRow1_1);
+        rowDiv.appendChild(colRow1_2);
 
         const rowDiv2 = document.createElement("div");
         rowDiv2.className = "row";
@@ -97,15 +95,18 @@ export class ShipInfoModal extends Modal {
         const cardGroup = new CardGroup();
         cardGroup.attachToParent(colDiv3);
 
+        // frame info
         const frameCard = new Card(this.ship.frame.name, this.ship.frame.description);
         frameCard.addSecondarySubtitle("Crew: " + this.ship.frame.requirements.crew + " - Power: " + this.ship.frame.requirements.power);
         frameCard.addListItemToCard("Module Slots: " + this.ship.frame.moduleSlots);
         frameCard.addListItemToCard("Mounting Points: " + this.ship.frame.mountingPoints);
 
+        // engine info
         const engineCard = new Card(this.ship.engine.name, this.ship.engine.description);
         engineCard.addSecondarySubtitle("Crew: " + this.ship.engine.requirements.crew + " - Power: " + this.ship.engine.requirements.power);
         engineCard.addListItemToCard("Speed: " + this.ship.engine.speed);
 
+        // reactor info
         const reactorCard = new Card(this.ship.reactor.name, this.ship.reactor.description);
         reactorCard.addSecondarySubtitle("Crew: " + this.ship.reactor.requirements.crew)
         reactorCard.addListItemToCard("Power Output: " + this.ship.reactor.powerOutput);
@@ -115,11 +116,95 @@ export class ShipInfoModal extends Modal {
         cardGroup.addCard(engineCard);
         cardGroup.addCard(reactorCard);
 
+        // row for modules and mounts
+        const rowDiv3 = document.createElement("div");
+        rowDiv3.className = "row";
+        rowDiv3.style.marginTop = "1rem";
+
+        const colRow3_1 = document.createElement("div");
+        colRow3_1.className = "col";
+
+        const colRow3_2 = document.createElement("div");
+        colRow3_2.className = "col";
+
+        // modules
+        const modulesCard = new Card("Modules", "");
+
+        if (this.ship.modules.length == 0) {
+            modulesCard.addListItemToCard("This ship has no installed Modules");
+        } else {
+            this.ship.modules.forEach(module => {
+                const listCard = new ListCard(false);
+
+                listCard.appendListText(module.name + " - " + module.description);
+
+                const type = module.symbol.split("_")[1];
+                console.log(type);
+
+                switch (type) {
+                    case "CARGO":
+                        listCard.appendListText("Cargo Capacity: " + module.capacity);
+                        break;
+                    case "CREW":
+                        listCard.appendListText("Crew Cpacity: " + module.capacity);
+                        break;
+                    case "MINERAL":
+                        break;
+                    case "JUMP":
+                        listCard.appendListText("Jump Range: " + module.rage);
+                        break;
+                    case "WARP":
+                        listCard.appendListText("Warp Range: " + module.rage);
+                        break;
+                    default:
+                        break;
+                }
+                console.log(listCard.getCardDiv);
+
+                modulesCard.addElementToCard(listCard.getCardDiv);
+            });
+
+            if (this.ship.modules.length < this.ship.frame.moduleSlots) {
+                modulesCard.addListItemToCard("Empty Module Slots: " + (this.ship.frame.moduleSlots - this.ship.modules.length));
+            }
+        }
+
+        // mounts
+        const mountsCard = new Card("Mounts", "");
+
+        if (this.ship.mounts.length == 0) {
+            mountsCard.addListItemToCard("This ship has no installed Mounts");
+        } else {
+            this.ship.mounts.forEach(mount => {
+                const listCard = new ListCard(false);
+
+                listCard.appendListText(mount.name + " - " + mount.description);
+                listCard.appendListText("Strength: " + mount.strength);
+
+                if(mount.deposits != null) {
+                    listCard.appendListText("Deposits: " + mount.deposits);
+                }
+
+                mountsCard.addElementToCard(listCard.getCardDiv);
+            });
+
+            if (this.ship.mounts.length < this.ship.frame.mountingPoints) {
+                mountsCard.addListItemToCard("Empty Mounting Points: " + (this.ship.frame.mountingPoints - this.ship.mounts.length));
+            }
+        }
+
+        colRow3_1.appendChild(modulesCard.getCardDiv);
+        colRow3_2.appendChild(mountsCard.getCardDiv);
+
+        rowDiv3.appendChild(colRow3_1);
+        rowDiv3.appendChild(colRow3_2);
+
 
         rowDiv2.appendChild(colDiv3);
 
         containerDiv.appendChild(rowDiv);
         containerDiv.appendChild(rowDiv2);
+        containerDiv.appendChild(rowDiv3);
 
         this.modalBodyDiv.appendChild(containerDiv);
     }

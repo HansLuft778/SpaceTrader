@@ -26,7 +26,7 @@ export interface Ship {
     frame: Frame;
     reactor: Reactor;
     engine: Engine;
-    modules: Module[];
+    modules: IModule[];
     mounts: Mount[];
 }
 
@@ -74,22 +74,26 @@ export interface Engine {
     condition?: number;
 }
 
-interface Module {
+export interface IModule {
     symbol: string;
     name: string;
     description: string;
     requirements: Requirement;
+
+    capacity?: number;
+    production?: string[];
+    rage?: number;
 }
 
-export interface CrewQuarter extends Module {
+export interface CrewQuarter extends IModule {
     capacity: number;
 }
 
-export interface CargoHold extends Module {
+export interface CargoHold extends IModule {
     capacity: number;
 }
 
-export interface Refinery extends Module {
+export interface Refinery extends IModule {
     production: string[];
 }
 
@@ -98,6 +102,9 @@ interface Mount {
     name: string;
     description: string;
     requirements: Requirement;
+
+    strength?: number;
+    deposits?: string[];
 }
 export interface Probe extends Mount {
     strength: number;

@@ -1,22 +1,26 @@
 export class ListCard {
 
+    private cardDiv: HTMLDivElement;
+
     private listGroup: HTMLUListElement;
     private footer: boolean;
 
     constructor(footer: boolean) {
+        this.cardDiv = document.createElement("div");
         this.listGroup = document.createElement("ul");
         this.footer = footer;
+
+        this.renderCard();
     }
 
-    renderCardAndAppendTo(parentDiv: HTMLDivElement) {
-        const cardDiv = document.createElement("div");
-        cardDiv.className = "card";
-        cardDiv.setAttribute("style", "margin-top: 10px;")
+    renderCard() {
+        this.cardDiv.className = "card";
+        this.cardDiv.setAttribute("style", "margin-top: 10px;")
 
         this.listGroup = document.createElement("ul");
         this.listGroup.className = "list-group list-group-flush"
 
-        cardDiv.appendChild(this.listGroup);
+        this.cardDiv.appendChild(this.listGroup);
 
         if (this.footer) {
             const cardFooter = document.createElement("div");
@@ -27,11 +31,13 @@ export class ListCard {
             cardFooterText.innerHTML = "Last updated 3 mins ago";
 
             cardFooter.appendChild(cardFooterText);
-            cardDiv.appendChild(cardFooter);
+            this.cardDiv.appendChild(cardFooter);
         }
+    }
 
-        parentDiv.appendChild(cardDiv);
-        return cardDiv;
+    appendTo(parentDiv: HTMLDivElement) {
+        parentDiv.appendChild(this.cardDiv);
+        return this.cardDiv;
     }
 
     appendListText(text: string, clickable: boolean = false, onClick: Function = Function) {
@@ -52,6 +58,10 @@ export class ListCard {
         listElement.className = "list-group-item";
         listElement.appendChild(element);
         this.listGroup.appendChild(listElement);
+    }
+
+    get getCardDiv(): HTMLDivElement {
+        return this.cardDiv;
     }
 }
 

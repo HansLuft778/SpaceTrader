@@ -155,7 +155,7 @@ function displayWaypointInfo(systemAccordion: SystemAccordion, waypoint: Waypoin
 
     const listCard = new ListCard(false);
     const accordionBody = accordionItem.getElementsByClassName("accordion-body")[0] as HTMLDivElement;
-    listCard.renderCardAndAppendTo(accordionBody);
+    listCard.appendTo(accordionBody);
     // append waypoint type
     listCard.appendListText("Type: " + waypoint.type);
 

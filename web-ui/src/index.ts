@@ -32,7 +32,7 @@ export async function getAgentData() {
     const agent = result.data;
 
     const agentCard = new ListCard(true);
-    agentCard.renderCardAndAppendTo(agentDataDiv);
+    agentCard.appendTo(agentDataDiv);
     agentCard.appendListText("Call sign: " + agent.symbol);
     agentCard.appendListText("Credits: " + agent.credits.toLocaleString());
     agentCard.appendListText("Headquarters: " + agent.headquarters, true, () => {
