@@ -7,7 +7,7 @@ export class CardGroup {
 
     constructor() {
         this.cardGroupDiv = document.createElement("div");
-        this.cardGroupDiv.className = "card-group";
+        this.cardGroupDiv.className = "card-group custom-card-group";
     }
 
     attachToParent(parentDiv: HTMLElement) {
