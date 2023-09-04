@@ -46,7 +46,7 @@ async function acceptContract(contractID: string, button: HTMLButtonElement) {
 
 function updateButtonStatus(button: HTMLButtonElement) {
     button.innerHTML = "Accepted"; // hähä der yoy stinkt nach gagge 
-    button.className = "btn btn-success"; // und versteht nüscht ausher trainstation
+    button.className = "btn btn-success disabled"; // und versteht nüscht ausher trainstation
 }
 
 function displayContracts(rawData: ApiResponse<Contract[]>) {
