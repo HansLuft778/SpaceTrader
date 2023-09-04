@@ -8,9 +8,9 @@ from Model.Waypoint import WaypointManager
 class SpaceTraders:
     header = ""
 
-    def register_new_agent():
+    def register_new_agent(self):
         url = "https://api.spacetraders.io/v2/register"
-        data = {"symbol": "GORG", "faction": "COSMIC"}
+        data = {"symbol": "GORG2", "faction": "COSMIC"}
         result = requests.post(url, json=data)
         print(result.text)
 
@@ -30,14 +30,14 @@ class SpaceTraders:
 if __name__ == "__main__":
     space_trader = SpaceTraders()
     header = space_trader.set_header()
-    space_trader.get_agent_details()
+    space_trader.register_new_agent()
 
-    contractMngr = ContractManager(header)
-    contracts: Contract = contractMngr.get_contracts()
-    print(contracts)
+    # contractMngr = ContractManager(header)
+    # contracts: Contract = contractMngr.get_contracts()
+    # print(contracts)
 
-    contractMngr.accept_contract(contracts[0].id)
+    # contractMngr.accept_contract(contracts[0].id)
 
-    waypointMngr = WaypointManager(header)
-    waypointMngr.get_waypoint_info("X1-QB20", "X1-QB20-61050B")
-    waypointMngr.get_waypoint_info("X1-QB20")
+    # waypointMngr = WaypointManager(header)
+    # waypointMngr.get_waypoint_info("X1-QB20", "X1-QB20-61050B")
+    # waypointMngr.get_waypoint_info("X1-QB20")
